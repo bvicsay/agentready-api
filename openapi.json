@@ -3,14 +3,14 @@
   "info": {
     "title": "AdaptMyPage Agent Readiness API",
     "version": "1.0.0",
-    "description": "Free, passive website agent-readiness audits powered by AgentReady alpha. Verify email and generate a bearer key at https://www.adaptmypage.com/developers/. Up to 10,000 scan attempts per UTC calendar month, 10 starts/minute, two concurrent scans; shared capacity/budget limits apply. No browser task execution or ranking guarantees.",
+    "description": "Bearer-authenticated, passive website agent-readiness audits powered by the AgentReady alpha engine. No email, account or newsletter integration. No browser task execution or ranking guarantees.",
     "contact": {
       "url": "https://www.adaptmypage.com/agent-readiness-api/"
     }
   },
   "servers": [
     {
-      "url": "https://www.adaptmypage.com"
+      "url": "https://api.example.com"
     }
   ],
   "security": [
@@ -199,7 +199,7 @@
       "BearerAuth": {
         "type": "http",
         "scheme": "bearer",
-        "bearerFormat": "amp_ API key"
+        "bearerFormat": "API bearer token"
       }
     },
     "schemas": {

@@ -1,22 +1,23 @@
 # AgentReady API
 
-Public REST API for passive website agent-readiness scans. It returns the pinned upstream AgentReady score, findings, evidence and recommendations as JSON.
+A small bearer-authenticated HTTP API that scans public websites with the
+[AgentReady](https://github.com/swarmclawai/agentready) engine and returns
+machine-readable readiness findings.
 
-This repository deploys independently from the Adapt My Page website. It does not execute JavaScript, submit forms or log in to sites. It is an alpha diagnostic, not proof of successful agent actions.
+## Endpoint
 
-## Endpoints
+`POST /api/v1/scan`
 
-- `POST /api/v1/scan` — authenticated scan (`Authorization: Bearer amp_…`)
-- `POST /api/scan` — same-origin demo scan with a small anonymous limit
-- `POST /api/account` — passwordless email login and verification
-- `GET /api/account` — current verified account
-- `POST /api/keys` — create, list or revoke account keys
-- `POST /api/lead` — transactional report delivery
-- `GET /healthz` — process health
+```sh
+curl -X POST https://api.example.com/api/v1/scan \
+  -H 'Authorization: Bearer YOUR_API_BEARER_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{"url":"https://example.com","profile":"auto"}'
+```
 
-OpenAPI is available in [`openapi.json`](openapi.json).
+The complete request and response contract is in [`openapi.json`](openapi.json).
 
-## Run locally
+## Local run
 
 ```sh
 cp .env.example .env
@@ -25,7 +26,13 @@ npm start
 curl http://localhost:3000/healthz
 ```
 
-Required production variables are `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `RESEND_API_KEY` and `RESEND_FROM`. Keep them in a secret manager or an untracked environment file. Run [`supabase/migrations/202609080001_public_api.sql`](supabase/migrations/202609080001_public_api.sql) once in the intended Supabase project.
+Set one secret environment variable:
+
+```dotenv
+API_BEARER_TOKEN=replace-with-a-long-random-secret
+```
+
+Generate a strong value with `openssl rand -hex 32`. Keep `.env` out of Git.
 
 ## Docker
 
@@ -34,23 +41,31 @@ docker build -t agentready-api .
 docker run --rm --env-file .env -p 3000:3000 agentready-api
 ```
 
-Put TLS termination, rate limiting and a firewall in front of the container. Keep port 3000 private.
+For production, terminate HTTPS with Caddy, Nginx or a load balancer and keep
+port 3000 private. The container exposes only `/healthz` and the scan endpoint.
 
-## VPS deployment
+## GitHub Actions and VPS
 
-Build and publish the image from GitHub Actions or a registry, then run it on an Ubuntu/Docker host:
+Pushing a `v*` tag runs the included workflow and publishes a multi-architecture
+image to GitHub Container Registry:
 
 ```sh
+git tag v0.1.0 && git push origin v0.1.0
 docker pull ghcr.io/bvicsay/agentready-api:sha-COMMIT_SHA
-docker run -d --name agentready-api --restart unless-stopped --env-file .env \
-  -p 127.0.0.1:3000:3000 ghcr.io/bvicsay/agentready-api:sha-COMMIT_SHA
 ```
 
-Put Caddy, Nginx or a managed load balancer in front for HTTPS. Use immutable image tags and keep Supabase and Resend secrets only on the host.
+Run that immutable image on an Ubuntu/Docker VPS with `API_BEARER_TOKEN` supplied
+only by the host environment or a secret manager. Add firewall and request-rate
+limits at the proxy before broad public use.
 
-## Limits and safety
+## Safety and limits
 
-The API enforces account quotas, shared capacity limits, concurrent-scan limits, request-size bounds, timeouts, robots rules and public-network-only URL validation. It blocks private IPs, credentials, unsafe protocols and cross-site follow-up requests. Do not expose Supabase service-role keys or API key plaintext.
+Scans are passive HTTP only: no JavaScript execution, form submission, login or
+agent task execution. URLs must be public HTTP(S), use standard ports, contain
+no credentials/query strings/fragments, and pass private-network and redirect
+checks. Each scan is bounded by pages, requests, response size and time. Only
+scan sites you are authorized to assess; the score is an alpha diagnostic, not a
+security, SEO or AI-visibility guarantee.
 
 ## Development
 
@@ -59,4 +74,6 @@ npm test
 npm audit
 ```
 
-The scanner engine is pinned from [swarmclawai/agentready](https://github.com/swarmclawai/agentready). Review upstream changes before updating it. The upstream license is included in `AGENTREADY-LICENSE`.
+The bundled engine is pinned from AgentReady. Review upstream changes before
+updating it. `AGENTREADY-LICENSE` contains its original license; `LICENSE`
+covers this repository.
