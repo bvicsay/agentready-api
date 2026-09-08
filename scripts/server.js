@@ -1,5 +1,5 @@
 const http = require('node:http');
-const { ApiError, fail } = require('./lib/api-platform');
+const { ApiError, fail } = require('../lib/api-platform');
 const routes = { '/api/v1/scan': require('../v1/scan') };
 function createServer() {
   return http.createServer({ requestTimeout: 65000, headersTimeout: 10000, maxHeaderSize: 16384 }, async (req, res) => {
