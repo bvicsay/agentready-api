@@ -16,7 +16,7 @@ app.get('/healthz', c => c.json({ ok: true }))
 
 app.post('/api/scan', async c => {
   try {
-    bearer(c.req.raw)
+    bearer({ headers: { authorization: c.req.header('authorization') } })
     const length = Number(c.req.header('content-length') || 0)
     if (length > 4096) throw new ApiError(413, 'request_too_large')
     const body = await c.req.json()
