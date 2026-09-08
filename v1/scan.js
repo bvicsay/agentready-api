@@ -1,1 +1,1 @@
-module.exports = require('./lib/scan-handler').createHandler();
+module.exports = require('../lib/scan-handler').createHandler();
