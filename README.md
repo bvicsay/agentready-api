@@ -38,7 +38,15 @@ Put TLS termination, rate limiting and a firewall in front of the container. Kee
 
 ## VPS deployment
 
-Build and publish the image from GitHub Actions or a registry, then run it on an Ubuntu/Docker host. Use immutable image tags and keep Supabase and Resend secrets only on the host. The parent project contains the complete [Hetzner deployment guide](../docs/hetzner-deployment.md).
+Build and publish the image from GitHub Actions or a registry, then run it on an Ubuntu/Docker host:
+
+```sh
+docker pull ghcr.io/bvicsay/agentready-api:sha-COMMIT_SHA
+docker run -d --name agentready-api --restart unless-stopped --env-file .env \
+  -p 127.0.0.1:3000:3000 ghcr.io/bvicsay/agentready-api:sha-COMMIT_SHA
+```
+
+Put Caddy, Nginx or a managed load balancer in front for HTTPS. Use immutable image tags and keep Supabase and Resend secrets only on the host.
 
 ## Limits and safety
 
