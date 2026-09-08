@@ -1,0 +1,397 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "AdaptMyPage Agent Readiness API",
+    "version": "1.0.0",
+    "description": "Free, passive website agent-readiness audits powered by AgentReady alpha. Verify email and generate a bearer key at https://www.adaptmypage.com/developers/. Up to 10,000 scan attempts per UTC calendar month, 10 starts/minute, two concurrent scans; shared capacity/budget limits apply. No browser task execution or ranking guarantees.",
+    "contact": {
+      "url": "https://www.adaptmypage.com/agent-readiness-api/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://www.adaptmypage.com"
+    }
+  ],
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ],
+  "paths": {
+    "/api/v1/scan": {
+      "post": {
+        "operationId": "scanAgentReadiness",
+        "summary": "Audit a public website for agent-readiness signals",
+        "description": "Synchronous request. Allow 60 seconds for response. Started failures consume quota. No queries/fragments, credentials, private networks or custom ports. Do not send confidential URLs. Only audit authorized websites.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "url"
+                ],
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "maxLength": 2048,
+                    "examples": [
+                      "https://example.com"
+                    ]
+                  },
+                  "profile": {
+                    "type": "string",
+                    "default": "auto",
+                    "enum": [
+                      "auto",
+                      "website",
+                      "merchant",
+                      "api",
+                      "marketplace",
+                      "mcp-server",
+                      "agent-service"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Full AgentReady report with original statuses and scoring.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "Account's monthly scan allowance."
+              },
+              "X-RateLimit-Remaining": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "Scan allowance remaining after reservation."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScanResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing bearer key",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Account unavailable",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request exceeds 4 KB",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Target unavailable",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate, concurrency, quota or shared capacity reached",
+            "headers": {
+              "Retry-After": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "Minimum recommended seconds before retry; quota resets may take longer."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service paused or dependency unavailable",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Scan timed out",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "amp_ API key"
+      }
+    },
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ScanResult": {
+        "type": "object",
+        "required": [
+          "agentreadyVersion",
+          "target",
+          "normalizedTarget",
+          "profile",
+          "score",
+          "scores",
+          "summary",
+          "findings",
+          "metadata"
+        ],
+        "properties": {
+          "agentreadyVersion": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          },
+          "normalizedTarget": {
+            "type": "string"
+          },
+          "profile": {
+            "type": "string"
+          },
+          "startedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "scores": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string"
+                },
+                "score": {
+                  "type": "number",
+                  "description": "Weighted points, not a percentage. Maximum is weight."
+                },
+                "weight": {
+                  "type": "number"
+                },
+                "applicableFindings": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "summary": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer"
+            }
+          },
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "title",
+                "status",
+                "severity",
+                "category",
+                "evidence"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "pass",
+                    "fail",
+                    "warn",
+                    "info",
+                    "unknown",
+                    "not_applicable"
+                  ]
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "critical",
+                    "major",
+                    "minor",
+                    "info"
+                  ]
+                },
+                "category": {
+                  "type": "string"
+                },
+                "recommendation": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "string"
+                },
+                "evidence": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "message"
+                    ],
+                    "properties": {
+                      "message": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      },
+                      "data": {}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "fetchedUrls": {
+                "type": "integer"
+              },
+              "skippedByRobots": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "elapsedMs": {
+                "type": "integer"
+              },
+              "active": {
+                "const": false
+              },
+              "browser": {
+                "const": false
+              },
+              "userAgent": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
