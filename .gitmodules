@@ -1,0 +1,3 @@
+[submodule "vendor/agentready"]
+	path = vendor/agentready
+	url = https://github.com/swarmclawai/agentready.git

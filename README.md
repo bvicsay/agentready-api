@@ -6,16 +6,32 @@ machine-readable readiness findings.
 
 ## Endpoint
 
-`POST /api/v1/scan`
+`POST /api/scan`
 
 ```sh
-curl -X POST https://api.example.com/api/v1/scan \
+curl -X POST https://api.example.com/api/scan \
   -H 'Authorization: Bearer YOUR_API_BEARER_TOKEN' \
   -H 'Content-Type: application/json' \
   -d '{"url":"https://example.com","profile":"auto"}'
 ```
 
 The complete request and response contract is in [`openapi.json`](openapi.json).
+
+## Where AgentReady is installed
+
+AgentReady is a pinned Git submodule at `vendor/agentready`. Clone this API with
+its submodule and build the bundled TypeScript rules:
+
+```sh
+git clone --recurse-submodules git@github.com:bvicsay/agentready-api.git
+cd agentready-api
+npm ci
+npm run build
+```
+
+`src/build-engine.mjs` bundles the upstream rules into
+`src/agentready-engine.cjs`. Docker runs the same build automatically, so no
+separate AgentReady installation is needed on the VPS.
 
 ## Local run
 

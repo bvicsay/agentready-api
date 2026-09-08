@@ -4,13 +4,25 @@
   "private": false,
   "description": "A public HTTP API for passive Agent Readiness website scans.",
   "license": "MIT",
-  "engines": { "node": ">=22.18.0" },
-  "scripts": { "start": "node scripts/server.js", "test": "node --test test/*.test.js" },
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "build": "node src/build-engine.mjs",
+    "start": "tsx src/server.ts"
+  },
   "dependencies": {
+    "@hono/node-server": "1.19.17",
     "cheerio": "1.1.2",
     "fast-xml-parser": "5.11.1",
+    "hono": "4.13.7",
     "ipaddr.js": "2.2.0",
     "robots-parser": "3.0.1",
+    "tsx": "4.20.6",
     "undici": "7.29.1"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12",
+    "typescript": "5.9.3"
   }
 }

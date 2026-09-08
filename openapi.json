@@ -19,7 +19,7 @@
     }
   ],
   "paths": {
-    "/api/v1/scan": {
+    "/api/scan": {
       "post": {
         "operationId": "scanAgentReadiness",
         "summary": "Audit a public website for agent-readiness signals",
