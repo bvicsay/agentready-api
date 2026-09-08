@@ -86,7 +86,7 @@ security, SEO or AI-visibility guarantee.
 ## Development
 
 ```sh
-npm test
+npm run build
 npm audit
 ```
 
