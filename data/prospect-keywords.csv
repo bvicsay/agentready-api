@@ -1,0 +1,102 @@
+country,sector,buyer_signal,query,notes
+Germany,Travel and direct booking,Booking or timetable flow is website-led,"regional ferry booking company",Transport booking sites are good AgentReady prospects
+Germany,Travel and direct booking,Booking or timetable flow is website-led,"bus tour operator online booking",Transport booking sites are good AgentReady prospects
+Germany,Hospitality and direct booking,Rooms and offers are sold through the website,"independent hotel group direct booking",Hotel chains often need machine-readable booking and location pages
+Germany,B2B ecommerce,Product catalog is the primary sales interface,"industrial supplies online shop",B2B catalogs need structured product and quote pages
+Germany,Manufacturer catalog,Technical product data and dealer routing live online,"heating manufacturer installer finder",Manufacturers need agent-readable specs and partner routing
+Germany,Attractions and ticketing,Ticket purchase or availability is website-led,"museum tickets online booking",Ticketed venues need accessible schedules and booking context
+France,Travel and direct booking,Booking or timetable flow is website-led,"ferry tickets official website",Transport booking sites are good AgentReady prospects
+France,Travel and direct booking,Booking or timetable flow is website-led,"coach tours online booking",Transport booking sites are good AgentReady prospects
+France,Hospitality and direct booking,Rooms and offers are sold through the website,"hotel group official booking",Hotel chains often need machine-readable booking and location pages
+France,B2B ecommerce,Product catalog is the primary sales interface,"packaging supplies online shop",B2B catalogs need structured product and quote pages
+France,Manufacturer catalog,Technical product data and dealer routing live online,"building materials manufacturer product catalog",Manufacturers need agent-readable specs and partner routing
+France,Attractions and ticketing,Ticket purchase or availability is website-led,"theme park tickets official",Ticketed venues need accessible schedules and booking context
+Spain,Travel and direct booking,Booking or timetable flow is website-led,"ferry tickets official website",Transport booking sites are good AgentReady prospects
+Spain,Travel and direct booking,Booking or timetable flow is website-led,"bus company online tickets",Transport booking sites are good AgentReady prospects
+Spain,Hospitality and direct booking,Rooms and offers are sold through the website,"hotel chain direct booking",Hotel chains often need machine-readable booking and location pages
+Spain,B2B ecommerce,Product catalog is the primary sales interface,"industrial supplies ecommerce",B2B catalogs need structured product and quote pages
+Spain,Manufacturer catalog,Technical product data and dealer routing live online,"ceramic tiles manufacturer catalog",Manufacturers need agent-readable specs and partner routing
+Spain,Attractions and ticketing,Ticket purchase or availability is website-led,"attraction tickets official website",Ticketed venues need accessible schedules and booking context
+Italy,Travel and direct booking,Booking or timetable flow is website-led,"ferry booking official website",Transport booking sites are good AgentReady prospects
+Italy,Travel and direct booking,Booking or timetable flow is website-led,"train tour operator booking",Transport booking sites are good AgentReady prospects
+Italy,Hospitality and direct booking,Rooms and offers are sold through the website,"hotel group direct booking",Hotel chains often need machine-readable booking and location pages
+Italy,B2B ecommerce,Product catalog is the primary sales interface,"restaurant supplies online shop",B2B catalogs need structured product and quote pages
+Italy,Manufacturer catalog,Technical product data and dealer routing live online,"furniture manufacturer product catalog",Manufacturers need agent-readable specs and partner routing
+Italy,Attractions and ticketing,Ticket purchase or availability is website-led,"museum tickets official website",Ticketed venues need accessible schedules and booking context
+Netherlands,Travel and direct booking,Booking or timetable flow is website-led,"ferry booking Netherlands official",Transport booking sites are good AgentReady prospects
+Netherlands,Travel and direct booking,Booking or timetable flow is website-led,"canal cruise booking official",Transport booking sites are good AgentReady prospects
+Netherlands,Hospitality and direct booking,Rooms and offers are sold through the website,"hotel group official booking",Hotel chains often need machine-readable booking and location pages
+Netherlands,B2B ecommerce,Product catalog is the primary sales interface,"wholesale supplies online shop",B2B catalogs need structured product and quote pages
+Netherlands,Manufacturer catalog,Technical product data and dealer routing live online,"water management manufacturer catalog",Manufacturers need agent-readable specs and partner routing
+Netherlands,Attractions and ticketing,Ticket purchase or availability is website-led,"attraction tickets official Netherlands",Ticketed venues need accessible schedules and booking context
+Belgium,Travel and direct booking,Booking or timetable flow is website-led,"coach company online tickets",Transport booking sites are good AgentReady prospects
+Belgium,Hospitality and direct booking,Rooms and offers are sold through the website,"hotel group direct booking Belgium",Hotel chains often need machine-readable booking and location pages
+Belgium,B2B ecommerce,Product catalog is the primary sales interface,"office supplies online shop Belgium",B2B catalogs need structured product and quote pages
+Belgium,Manufacturer catalog,Technical product data and dealer routing live online,"building products manufacturer Belgium",Manufacturers need agent-readable specs and partner routing
+Belgium,Attractions and ticketing,Ticket purchase or availability is website-led,"museum tickets official Belgium",Ticketed venues need accessible schedules and booking context
+Austria,Travel and direct booking,Booking or timetable flow is website-led,"mountain railway tickets online",Transport and attraction booking sites are good AgentReady prospects
+Austria,Hospitality and direct booking,Rooms and offers are sold through the website,"hotel group direct booking Austria",Hotel chains often need machine-readable booking and location pages
+Austria,B2B ecommerce,Product catalog is the primary sales interface,"industrial supplies online shop Austria",B2B catalogs need structured product and quote pages
+Austria,Manufacturer catalog,Technical product data and dealer routing live online,"heating systems manufacturer Austria",Manufacturers need agent-readable specs and partner routing
+Austria,Attractions and ticketing,Ticket purchase or availability is website-led,"ski pass online booking official",Ticketed venues need accessible schedules and booking context
+Switzerland,Travel and direct booking,Booking or timetable flow is website-led,"mountain railway tickets official",Transport and attraction booking sites are good AgentReady prospects
+Switzerland,Hospitality and direct booking,Rooms and offers are sold through the website,"hotel group direct booking Switzerland",Hotel chains often need machine-readable booking and location pages
+Switzerland,B2B ecommerce,Product catalog is the primary sales interface,"industrial supplies ecommerce Switzerland",B2B catalogs need structured product and quote pages
+Switzerland,Manufacturer catalog,Technical product data and dealer routing live online,"precision tools manufacturer catalog",Manufacturers need agent-readable specs and partner routing
+Switzerland,Attractions and ticketing,Ticket purchase or availability is website-led,"museum tickets official Switzerland",Ticketed venues need accessible schedules and booking context
+United Kingdom,Travel and direct booking,Booking or timetable flow is website-led,"ferry booking official UK",Transport booking sites are good AgentReady prospects
+United Kingdom,Travel and direct booking,Booking or timetable flow is website-led,"coach holidays online booking",Transport booking sites are good AgentReady prospects
+United Kingdom,Hospitality and direct booking,Rooms and offers are sold through the website,"independent hotel group direct booking UK",Hotel chains often need machine-readable booking and location pages
+United Kingdom,B2B ecommerce,Product catalog is the primary sales interface,"trade supplies online shop UK",B2B catalogs need structured product and quote pages
+United Kingdom,Manufacturer catalog,Technical product data and dealer routing live online,"building products manufacturer technical catalog UK",Manufacturers need agent-readable specs and partner routing
+United Kingdom,Attractions and ticketing,Ticket purchase or availability is website-led,"visitor attraction tickets official UK",Ticketed venues need accessible schedules and booking context
+Ireland,Travel and direct booking,Booking or timetable flow is website-led,"ferry booking official Ireland",Transport booking sites are good AgentReady prospects
+Ireland,Hospitality and direct booking,Rooms and offers are sold through the website,"hotel group direct booking Ireland",Hotel chains often need machine-readable booking and location pages
+Ireland,B2B ecommerce,Product catalog is the primary sales interface,"trade supplies online shop Ireland",B2B catalogs need structured product and quote pages
+Ireland,Manufacturer catalog,Technical product data and dealer routing live online,"building materials manufacturer Ireland",Manufacturers need agent-readable specs and partner routing
+Ireland,Attractions and ticketing,Ticket purchase or availability is website-led,"attraction tickets official Ireland",Ticketed venues need accessible schedules and booking context
+Norway,Travel and direct booking,Booking or timetable flow is website-led,"ferry booking official Norway",Transport booking sites are good AgentReady prospects
+Norway,Hospitality and direct booking,Rooms and offers are sold through the website,"hotel group direct booking Norway",Hotel chains often need machine-readable booking and location pages
+Norway,B2B ecommerce,Product catalog is the primary sales interface,"industrial supplies online shop Norway",B2B catalogs need structured product and quote pages
+Norway,Manufacturer catalog,Technical product data and dealer routing live online,"marine equipment manufacturer catalog Norway",Manufacturers need agent-readable specs and partner routing
+Norway,Attractions and ticketing,Ticket purchase or availability is website-led,"fjord cruise booking official",Ticketed venues need accessible schedules and booking context
+Sweden,Travel and direct booking,Booking or timetable flow is website-led,"ferry booking official Sweden",Transport booking sites are good AgentReady prospects
+Sweden,Hospitality and direct booking,Rooms and offers are sold through the website,"hotel group direct booking Sweden",Hotel chains often need machine-readable booking and location pages
+Sweden,B2B ecommerce,Product catalog is the primary sales interface,"industrial supplies ecommerce Sweden",B2B catalogs need structured product and quote pages
+Sweden,Manufacturer catalog,Technical product data and dealer routing live online,"industrial equipment manufacturer catalog Sweden",Manufacturers need agent-readable specs and partner routing
+Sweden,Attractions and ticketing,Ticket purchase or availability is website-led,"museum tickets official Sweden",Ticketed venues need accessible schedules and booking context
+Denmark,Travel and direct booking,Booking or timetable flow is website-led,"ferry booking official Denmark",Transport booking sites are good AgentReady prospects
+Denmark,Hospitality and direct booking,Rooms and offers are sold through the website,"hotel group direct booking Denmark",Hotel chains often need machine-readable booking and location pages
+Denmark,B2B ecommerce,Product catalog is the primary sales interface,"industrial supplies online shop Denmark",B2B catalogs need structured product and quote pages
+Denmark,Manufacturer catalog,Technical product data and dealer routing live online,"manufacturer product catalog Denmark",Manufacturers need agent-readable specs and partner routing
+Denmark,Attractions and ticketing,Ticket purchase or availability is website-led,"attraction tickets official Denmark",Ticketed venues need accessible schedules and booking context
+Finland,Travel and direct booking,Booking or timetable flow is website-led,"ferry booking official Finland",Transport booking sites are good AgentReady prospects
+Finland,Hospitality and direct booking,Rooms and offers are sold through the website,"hotel group direct booking Finland",Hotel chains often need machine-readable booking and location pages
+Finland,B2B ecommerce,Product catalog is the primary sales interface,"industrial supplies ecommerce Finland",B2B catalogs need structured product and quote pages
+Finland,Manufacturer catalog,Technical product data and dealer routing live online,"building products manufacturer Finland",Manufacturers need agent-readable specs and partner routing
+Finland,Attractions and ticketing,Ticket purchase or availability is website-led,"attraction tickets official Finland",Ticketed venues need accessible schedules and booking context
+Poland,Travel and direct booking,Booking or timetable flow is website-led,"bus company online tickets Poland",Transport booking sites are good AgentReady prospects
+Poland,Hospitality and direct booking,Rooms and offers are sold through the website,"hotel group direct booking Poland",Hotel chains often need machine-readable booking and location pages
+Poland,B2B ecommerce,Product catalog is the primary sales interface,"industrial supplies ecommerce Poland",B2B catalogs need structured product and quote pages
+Poland,Manufacturer catalog,Technical product data and dealer routing live online,"furniture manufacturer product catalog Poland",Manufacturers need agent-readable specs and partner routing
+Poland,Attractions and ticketing,Ticket purchase or availability is website-led,"museum tickets official Poland",Ticketed venues need accessible schedules and booking context
+Czechia,Travel and direct booking,Booking or timetable flow is website-led,"bus company online tickets Czechia",Transport booking sites are good AgentReady prospects
+Czechia,Hospitality and direct booking,Rooms and offers are sold through the website,"hotel group direct booking Czechia",Hotel chains often need machine-readable booking and location pages
+Czechia,B2B ecommerce,Product catalog is the primary sales interface,"industrial supplies ecommerce Czechia",B2B catalogs need structured product and quote pages
+Czechia,Manufacturer catalog,Technical product data and dealer routing live online,"machinery manufacturer product catalog Czechia",Manufacturers need agent-readable specs and partner routing
+Czechia,Attractions and ticketing,Ticket purchase or availability is website-led,"attraction tickets official Czechia",Ticketed venues need accessible schedules and booking context
+Greece,Travel and direct booking,Booking or timetable flow is website-led,"ferry booking official Greece",Transport booking sites are good AgentReady prospects
+Greece,Hospitality and direct booking,Rooms and offers are sold through the website,"hotel group direct booking Greece",Hotel chains often need machine-readable booking and location pages
+Greece,B2B ecommerce,Product catalog is the primary sales interface,"hotel supplies online shop Greece",B2B catalogs need structured product and quote pages
+Greece,Manufacturer catalog,Technical product data and dealer routing live online,"building materials manufacturer Greece",Manufacturers need agent-readable specs and partner routing
+Greece,Attractions and ticketing,Ticket purchase or availability is website-led,"attraction tickets official Greece",Ticketed venues need accessible schedules and booking context
+Portugal,Travel and direct booking,Booking or timetable flow is website-led,"ferry booking official Portugal",Transport booking sites are good AgentReady prospects
+Portugal,Hospitality and direct booking,Rooms and offers are sold through the website,"hotel group direct booking Portugal",Hotel chains often need machine-readable booking and location pages
+Portugal,B2B ecommerce,Product catalog is the primary sales interface,"industrial supplies online shop Portugal",B2B catalogs need structured product and quote pages
+Portugal,Manufacturer catalog,Technical product data and dealer routing live online,"ceramics manufacturer product catalog Portugal",Manufacturers need agent-readable specs and partner routing
+Portugal,Attractions and ticketing,Ticket purchase or availability is website-led,"attraction tickets official Portugal",Ticketed venues need accessible schedules and booking context
+Romania,Travel and direct booking,Booking or timetable flow is website-led,"bus company online tickets Romania",Transport booking sites are good AgentReady prospects
+Romania,Hospitality and direct booking,Rooms and offers are sold through the website,"hotel group direct booking Romania",Hotel chains often need machine-readable booking and location pages
+Romania,B2B ecommerce,Product catalog is the primary sales interface,"industrial supplies ecommerce Romania",B2B catalogs need structured product and quote pages
+Romania,Manufacturer catalog,Technical product data and dealer routing live online,"furniture manufacturer catalog Romania",Manufacturers need agent-readable specs and partner routing
+Romania,Attractions and ticketing,Ticket purchase or availability is website-led,"attraction tickets official Romania",Ticketed venues need accessible schedules and booking context

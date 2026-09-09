@@ -1,0 +1,21 @@
+company,website,country,sector,source,notes
+Fjord Line,https://www.fjordline.com,Norway,Travel and ferry booking,manual seed,Website-based ticketing and route discovery
+Pentland Ferries,https://www.pentlandferries.co.uk,United Kingdom,Travel and ferry booking,manual seed,Website-based ticketing and route discovery
+Aran Island Ferries,https://www.aranislandferries.com,Ireland,Travel and ferry booking,manual seed,Website-based booking and local tourism discovery
+Blue Star Ferries,https://www.bluestarferries.com,Greece,Travel and ferry booking,manual seed,Website-based booking and route discovery
+Trasmed,https://www.trasmed.com,Spain,Travel and ferry booking,manual seed,Website-based passenger ticketing
+Hotel Sacher,https://www.sacher.com,Austria,Hospitality and direct booking,manual seed,Direct booking and offer discovery depend on website accessibility
+Martin's Hotels,https://www.martinshotels.com,Belgium,Hospitality and direct booking,manual seed,Direct booking and location discovery
+H10 Hotels,https://www.h10hotels.com,Spain,Hospitality and direct booking,manual seed,Direct booking and destination discovery
+A&O Hostels,https://www.aohostels.com,Germany,Hospitality and direct booking,manual seed,High-volume direct booking pages
+Motel One,https://www.motel-one.com,Germany,Hospitality and direct booking,manual seed,Direct booking and city-location discovery
+Smyths Toys,https://www.smythstoys.com,Ireland,Retail ecommerce,manual seed,Product catalog and availability are website-led
+Thomann,https://www.thomann.de,Germany,Retail ecommerce,manual seed,Product catalog and comparison pages are website-led
+Conrad Electronic,https://www.conrad.com,Germany,B2B ecommerce and electronics,manual seed,Large product catalog and technical details
+Manutan,https://www.manutan.com,France,B2B ecommerce and industrial supplies,manual seed,Product catalog and procurement flows
+Rajapack,https://www.rajapack.eu,France,B2B ecommerce and packaging,manual seed,Product catalog and buying guidance
+Kärcher,https://www.kaercher.com,Germany,Manufacturer and product catalog,manual seed,Product discovery and support content are website-led
+Rational,https://www.rational-online.com,Germany,Manufacturer and dealer lead generation,manual seed,Product discovery and dealer/contact routing
+Viessmann Climate Solutions,https://www.viessmann-climatesolutions.com,Germany,Manufacturer and installer lead generation,manual seed,Product discovery and partner routing
+Uponor,https://www.uponor.com,Finland,Manufacturer and technical catalog,manual seed,Technical content and partner routing
+Wavin,https://www.wavin.com,Netherlands,Manufacturer and technical catalog,manual seed,Technical content and product discovery

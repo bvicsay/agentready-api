@@ -1,0 +1,221 @@
+company,website,country,sector,fit_score,agentready_score,critical_findings,major_findings,public_role_emails,public_phone_numbers,contact_pages,ai_readiness_angles,targeting_notes,draft_email,source
+Fjord Line,https://www.fjordline.com/,Norway,Travel and ferry booking,85,76,,warn: Agent access policy is published | warn: Support path is detectable,info@fjordline.com,+4751464099,https://www.fjordline.com/; https://www.fjordline.com/contact; https://www.fjordline.com/en/p/about-fjord-line; https://www.fjordline.com/en/p/help-and-contact; https://www.fjordline.com/impressum; https://www.fjordline.com/imprint; https://www.fjordline.com/kontakt,discoverability through sitemaps; agent-facing policy and discovery endpoints,Website-based ticketing and route discovery,"Subject: Quick AI-agent readiness check for Fjord Line
+
+Hi Fjord Line team,
+
+I noticed a few likely AI-agent readiness gaps on www.fjordline.com: Publish sitemap.xml or reference sitemap locations from robots.txt. Add /llms.txt with a concise Markdown map of agent-relevant pages. Expose clean Markdown alternatives for high-value pages where possible. These matter as more customers ask AI assistants to compare providers, find product details, check availability, or identify the right contact route.
+
+The most relevant angles for your site look like discoverability through sitemaps, agent-facing policy and discovery endpoints. I built AgentReady to show these issues in a short, practical report without logins or invasive testing.
+
+Would it be useful if I sent over the readout for www.fjordline.com?
+
+Best,",manual seed
+Pentland Ferries,https://www.pentlandferries.co.uk/,United Kingdom,Travel and ferry booking,85,75,,warn: Agent access policy is published | warn: Support path is detectable,sales@pentlandferries.co.uk,,https://www.pentlandferries.co.uk/; https://www.pentlandferries.co.uk/contact; https://www.pentlandferries.co.uk/impressum; https://www.pentlandferries.co.uk/imprint; https://www.pentlandferries.co.uk/kontakt,discoverability through sitemaps; agent-facing policy and discovery endpoints,Website-based ticketing and route discovery,"Subject: Quick AI-agent readiness check for Pentland Ferries
+
+Hi Pentland Ferries team,
+
+I noticed a few likely AI-agent readiness gaps on www.pentlandferries.co.uk: Publish sitemap.xml or reference sitemap locations from robots.txt. Publish an agent access policy that explains allowed agent behavior, rate limits, and contact paths. Publish crawlable support/contact pages and expected response paths. These matter as more customers ask AI assistants to compare providers, find product details, check availability, or identify the right contact route.
+
+The most relevant angles for your site look like discoverability through sitemaps, agent-facing policy and discovery endpoints. I built AgentReady to show these issues in a short, practical report without logins or invasive testing.
+
+Would it be useful if I sent over the readout for www.pentlandferries.co.uk?
+
+Best,",manual seed
+Aran Island Ferries,https://www.aranislandferries.com/,Ireland,Travel and ferry booking,80,67,,warn: Structured data is available | warn: Agent access policy is published,,+35391568538; +35391568903,https://www.aranislandferries.com/; https://www.aranislandferries.com/booking; https://www.aranislandferries.com/contact; https://www.aranislandferries.com/contact.php; https://www.aranislandferries.com/fleet.php; https://www.aranislandferries.com/impressum; https://www.aranislandferries.com/kontakt,structured data for agent understanding; agent-facing policy and discovery endpoints; hard-to-detect public contact channel,Website-based booking and local tourism discovery,"Subject: Quick AI-agent readiness check for Aran Island Ferries
+
+Hi Aran Island Ferries team,
+
+I noticed a few likely AI-agent readiness gaps on www.aranislandferries.com: Add /llms.txt with a concise Markdown map of agent-relevant pages. Expose clean Markdown alternatives for high-value pages where possible. Add JSON-LD or microdata that describes the organization, products, services, docs, or API. These matter as more customers ask AI assistants to compare providers, find product details, check availability, or identify the right contact route.
+
+The most relevant angles for your site look like structured data for agent understanding, agent-facing policy and discovery endpoints, hard-to-detect public contact channel. I built AgentReady to show these issues in a short, practical report without logins or invasive testing.
+
+Would it be useful if I sent over the readout for www.aranislandferries.com?
+
+Best,",manual seed
+Blue Star Ferries,https://www.bluestarferries.com/,Greece,Travel and ferry booking,80,63,,warn: Structured data is available | warn: Agent access policy is published | warn: Support path is detectable,,+30 210 89 19 800,https://www.bluestarferries.com/; https://www.bluestarferries.com/contact; https://www.bluestarferries.com/el-gr/retrieve-booking; https://www.bluestarferries.com/el-gr/retrieve-external-booking; https://www.bluestarferries.com/impressum; https://www.bluestarferries.com/kontakt,structured data for agent understanding; agent-facing policy and discovery endpoints; hard-to-detect public contact channel,Website-based booking and route discovery,"Subject: Quick AI-agent readiness check for Blue Star Ferries
+
+Hi Blue Star Ferries team,
+
+I noticed a few likely AI-agent readiness gaps on www.bluestarferries.com: Expose clean Markdown alternatives for high-value pages where possible. Add JSON-LD or microdata that describes the organization, products, services, docs, or API. Add Organization, LocalBusiness, WebSite, SoftwareApplication, or Service JSON-LD. These matter as more customers ask AI assistants to compare providers, find product details, check availability, or identify the right contact route.
+
+The most relevant angles for your site look like structured data for agent understanding, agent-facing policy and discovery endpoints, hard-to-detect public contact channel. I built AgentReady to show these issues in a short, practical report without logins or invasive testing.
+
+Would it be useful if I sent over the readout for www.bluestarferries.com?
+
+Best,",manual seed
+Trasmed,https://www.trasmed.com/,Spain,Travel and ferry booking,60,81,,,,,https://www.trasmed.com/; https://www.trasmed.com/contact; https://www.trasmed.com/impressum; https://www.trasmed.com/imprint; https://www.trasmed.com/kontakt,hard-to-detect public contact channel,Website-based passenger ticketing,"Subject: Quick AI-agent readiness check for Trasmed
+
+Hi Trasmed team,
+
+I noticed a few likely AI-agent readiness gaps on www.trasmed.com: Structure llms.txt with an H1, optional summary, and Markdown file lists. These matter as more customers ask AI assistants to compare providers, find product details, check availability, or identify the right contact route.
+
+The most relevant angles for your site look like hard-to-detect public contact channel. I built AgentReady to show these issues in a short, practical report without logins or invasive testing.
+
+Would it be useful if I sent over the readout for www.trasmed.com?
+
+Best,",manual seed
+Hotel Sacher,https://www.sacher.com/,Austria,Hospitality and direct booking,80,78,,,,+43 1 514 560; +43 662 889 770; +43%201%20514%20560%20; +43%205212%202272%200; +43%20662%20889%20770,https://www.sacher.com/; https://www.sacher.com/contact; https://www.sacher.com/en/contact/; https://www.sacher.com/en/imprint/; https://www.sacher.com/en/terms-of-service/; https://www.sacher.com/en/world-of-sacher/; https://www.sacher.com/kontakt,discoverability through sitemaps; hard-to-detect public contact channel,Direct booking and offer discovery depend on website accessibility,"Subject: Quick AI-agent readiness check for Hotel Sacher
+
+Hi Hotel Sacher team,
+
+I noticed a few likely AI-agent readiness gaps on www.sacher.com: Publish sitemap.xml or reference sitemap locations from robots.txt. Structure llms.txt with an H1, optional summary, and Markdown file lists. These matter as more customers ask AI assistants to compare providers, find product details, check availability, or identify the right contact route.
+
+The most relevant angles for your site look like discoverability through sitemaps, hard-to-detect public contact channel. I built AgentReady to show these issues in a short, practical report without logins or invasive testing.
+
+Would it be useful if I sent over the readout for www.sacher.com?
+
+Best,",manual seed
+Martin's Hotels,https://www.martinshotels.com/,Belgium,Hospitality and direct booking,90,49,,warn: Structured data is available | warn: Agent access policy is published | warn: Support path is detectable,,,https://www.martinshotels.com/; https://www.martinshotels.com/contact; https://www.martinshotels.com/fr/page/contact.12263.html; https://www.martinshotels.com/impressum; https://www.martinshotels.com/imprint; https://www.martinshotels.com/kontakt,crawler policy clarity; structured data for agent understanding; discoverability through sitemaps; agent-facing policy and discovery endpoints; hard-to-detect public contact channel,Direct booking and location discovery,"Subject: Quick AI-agent readiness check for Martin's Hotels
+
+Hi Martin's Hotels team,
+
+I noticed a few likely AI-agent readiness gaps on www.martinshotels.com: Publish robots.txt so automated clients can understand crawl preferences. Publish sitemap.xml or reference sitemap locations from robots.txt. Add /llms.txt with a concise Markdown map of agent-relevant pages. These matter as more customers ask AI assistants to compare providers, find product details, check availability, or identify the right contact route.
+
+The most relevant angles for your site look like crawler policy clarity, structured data for agent understanding, discoverability through sitemaps, agent-facing policy and discovery endpoints, hard-to-detect public contact channel. I built AgentReady to show these issues in a short, practical report without logins or invasive testing.
+
+Would it be useful if I sent over the readout for www.martinshotels.com?
+
+Best,",manual seed
+H10 Hotels,https://www.h10hotels.com/,Spain,Hospitality and direct booking,95,49,,warn: Structured data is available | warn: Agent access policy is published | warn: Support path is detectable,info.hpa@hotelstheone.com; info.tmp@hotelstheone.com; reservations.hpc@h10hotels.com; reservations.hto@hotelstheone.com; reservations.tap@hotelstheone.com,,https://www.h10hotels.com/; https://www.h10hotels.com/contact; https://www.h10hotels.com/en/all-inclusive-hotels; https://www.h10hotels.com/en/contact-us; https://www.h10hotels.com/en/privilege-hotels; https://www.h10hotels.com/impressum; https://www.h10hotels.com/kontakt,crawler policy clarity; structured data for agent understanding; discoverability through sitemaps; agent-facing policy and discovery endpoints,Direct booking and destination discovery,"Subject: Quick AI-agent readiness check for H10 Hotels
+
+Hi H10 Hotels team,
+
+I noticed a few likely AI-agent readiness gaps on www.h10hotels.com: Publish robots.txt so automated clients can understand crawl preferences. Publish sitemap.xml or reference sitemap locations from robots.txt. Add /llms.txt with a concise Markdown map of agent-relevant pages. These matter as more customers ask AI assistants to compare providers, find product details, check availability, or identify the right contact route.
+
+The most relevant angles for your site look like crawler policy clarity, structured data for agent understanding, discoverability through sitemaps, agent-facing policy and discovery endpoints. I built AgentReady to show these issues in a short, practical report without logins or invasive testing.
+
+Would it be useful if I sent over the readout for www.h10hotels.com?
+
+Best,",manual seed
+A&O Hostels,https://www.aohostels.com/,Germany,Hospitality and direct booking,85,60,,warn: Structured data is available | warn: Agent access policy is published,booking@aohostels.com; reservation@voucher.aohostels.com; sales@aohostels.com,,https://www.aohostels.com/; https://www.aohostels.com/en/bookingtool/; https://www.aohostels.com/en/service/female-dorm/; https://www.aohostels.com/en/services/faq/; https://www.aohostels.com/en/services/frequent-guest-advantage/; https://www.aohostels.com/en/services/rail-pass-discount/; https://www.aohostels.com/en/services/vouchers/,structured data for agent understanding; discoverability through sitemaps; agent-facing policy and discovery endpoints,High-volume direct booking pages,"Subject: Quick AI-agent readiness check for A&O Hostels
+
+Hi A&O Hostels team,
+
+I noticed a few likely AI-agent readiness gaps on www.aohostels.com: Publish sitemap.xml or reference sitemap locations from robots.txt. Structure llms.txt with an H1, optional summary, and Markdown file lists. Expose clean Markdown alternatives for high-value pages where possible. These matter as more customers ask AI assistants to compare providers, find product details, check availability, or identify the right contact route.
+
+The most relevant angles for your site look like structured data for agent understanding, discoverability through sitemaps, agent-facing policy and discovery endpoints. I built AgentReady to show these issues in a short, practical report without logins or invasive testing.
+
+Would it be useful if I sent over the readout for www.aohostels.com?
+
+Best,",manual seed
+Motel One,https://www.motel-one.com/,Germany,Hospitality and direct booking,90,49,,warn: Structured data is available | warn: Agent access policy is published | warn: Support path is detectable,,,https://www.motel-one.com/; https://www.motel-one.com/contact; https://www.motel-one.com/de/services/be-one-membership/; https://www.motel-one.com/de/services/essen-trinken/; https://www.motel-one.com/de/services/essen-trinken/an-der-bar/; https://www.motel-one.com/de/services/ueberblick/; https://www.motel-one.com/kontakt,crawler policy clarity; structured data for agent understanding; discoverability through sitemaps; agent-facing policy and discovery endpoints; hard-to-detect public contact channel,Direct booking and city-location discovery,"Subject: Quick AI-agent readiness check for Motel One
+
+Hi Motel One team,
+
+I noticed a few likely AI-agent readiness gaps on www.motel-one.com: Publish robots.txt so automated clients can understand crawl preferences. Publish sitemap.xml or reference sitemap locations from robots.txt. Add /llms.txt with a concise Markdown map of agent-relevant pages. These matter as more customers ask AI assistants to compare providers, find product details, check availability, or identify the right contact route.
+
+The most relevant angles for your site look like crawler policy clarity, structured data for agent understanding, discoverability through sitemaps, agent-facing policy and discovery endpoints, hard-to-detect public contact channel. I built AgentReady to show these issues in a short, practical report without logins or invasive testing.
+
+Would it be useful if I sent over the readout for www.motel-one.com?
+
+Best,",manual seed
+Smyths Toys,https://www.smythstoys.com/,Ireland,Retail ecommerce,80,72,,warn: Structured data is available,,,https://www.smythstoys.com/; https://www.smythstoys.com/contact; https://www.smythstoys.com/impressum; https://www.smythstoys.com/imprint; https://www.smythstoys.com/kontakt,structured data for agent understanding; discoverability through sitemaps; hard-to-detect public contact channel,Product catalog and availability are website-led,"Subject: Quick AI-agent readiness check for Smyths Toys
+
+Hi Smyths Toys team,
+
+I noticed a few likely AI-agent readiness gaps on www.smythstoys.com: Publish sitemap.xml or reference sitemap locations from robots.txt. Add /llms.txt with a concise Markdown map of agent-relevant pages. Add JSON-LD or microdata that describes the organization, products, services, docs, or API. These matter as more customers ask AI assistants to compare providers, find product details, check availability, or identify the right contact route.
+
+The most relevant angles for your site look like structured data for agent understanding, discoverability through sitemaps, hard-to-detect public contact channel. I built AgentReady to show these issues in a short, practical report without logins or invasive testing.
+
+Would it be useful if I sent over the readout for www.smythstoys.com?
+
+Best,",manual seed
+Thomann,https://www.thomann.de/,Germany,Retail ecommerce,85,64,,warn: Agent access policy is published | warn: Support path is detectable,info@thomann.de,,https://www.thomann.de/; https://www.thomann.de/compinfo_contact.html; https://www.thomann.de/compinfo_imprint.html; https://www.thomann.de/contact; https://www.thomann.de/helpdesk_repair.html; https://www.thomann.de/helpdesk_service.html; https://www.thomann.de/kontakt,agent-facing policy and discovery endpoints,Product catalog and comparison pages are website-led,"Subject: Quick AI-agent readiness check for Thomann
+
+Hi Thomann team,
+
+I noticed a few likely AI-agent readiness gaps on www.thomann.de: Add /llms.txt with a concise Markdown map of agent-relevant pages. Expose clean Markdown alternatives for high-value pages where possible. Publish an agent access policy that explains allowed agent behavior, rate limits, and contact paths. These matter as more customers ask AI assistants to compare providers, find product details, check availability, or identify the right contact route.
+
+The most relevant angles for your site look like agent-facing policy and discovery endpoints. I built AgentReady to show these issues in a short, practical report without logins or invasive testing.
+
+Would it be useful if I sent over the readout for www.thomann.de?
+
+Best,",manual seed
+Conrad Electronic,https://www.conrad.com/,Germany,B2B ecommerce and electronics,60,81,,warn: Agent access policy is published | warn: Support path is detectable,,,https://www.conrad.com/; https://www.conrad.com/en/about/affiliate.html; https://www.conrad.com/en/service.html; https://www.conrad.com/en/service/advice-and-information/newsletter-subscribe.html; https://www.conrad.com/en/service/eprocurement.html; https://www.conrad.com/en/service/orderservice/offerservice.html; https://www.conrad.com/en/service/orderservice/specialprocurement.html,discoverability through sitemaps; agent-facing policy and discovery endpoints; hard-to-detect public contact channel,Large product catalog and technical details,"Subject: Quick AI-agent readiness check for Conrad Electronic
+
+Hi Conrad Electronic team,
+
+I noticed a few likely AI-agent readiness gaps on www.conrad.com: Publish sitemap.xml or reference sitemap locations from robots.txt. Add /llms.txt with a concise Markdown map of agent-relevant pages. Expose clean Markdown alternatives for high-value pages where possible. These matter as more customers ask AI assistants to compare providers, find product details, check availability, or identify the right contact route.
+
+The most relevant angles for your site look like discoverability through sitemaps, agent-facing policy and discovery endpoints, hard-to-detect public contact channel. I built AgentReady to show these issues in a short, practical report without logins or invasive testing.
+
+Would it be useful if I sent over the readout for www.conrad.com?
+
+Best,",manual seed
+Manutan,https://www.manutan.com/,France,B2B ecommerce and industrial supplies,70,89,fail: No obvious secrets found in fetched public content,warn: Structured data is available,,,https://www.manutan.com/; https://www.manutan.com/contact; https://www.manutan.com/impressum; https://www.manutan.com/imprint; https://www.manutan.com/kontakt,structured data for agent understanding; hard-to-detect public contact channel,Product catalog and procurement flows,"Subject: Quick AI-agent readiness check for Manutan
+
+Hi Manutan team,
+
+I noticed a few likely AI-agent readiness gaps on www.manutan.com: Structure llms.txt with an H1, optional summary, and Markdown file lists. Add JSON-LD or microdata that describes the organization, products, services, docs, or API. Add Organization, LocalBusiness, WebSite, SoftwareApplication, or Service JSON-LD. These matter as more customers ask AI assistants to compare providers, find product details, check availability, or identify the right contact route.
+
+The most relevant angles for your site look like structured data for agent understanding, hard-to-detect public contact channel. I built AgentReady to show these issues in a short, practical report without logins or invasive testing.
+
+Would it be useful if I sent over the readout for www.manutan.com?
+
+Best,",manual seed
+Rajapack,https://www.rajapack.eu/,France,B2B ecommerce and packaging,90,49,,warn: Structured data is available | warn: Agent access policy is published | warn: Support path is detectable,,,,crawler policy clarity; structured data for agent understanding; discoverability through sitemaps; agent-facing policy and discovery endpoints; hard-to-detect public contact channel,Product catalog and buying guidance,"Subject: Quick AI-agent readiness check for Rajapack
+
+Hi Rajapack team,
+
+I noticed a few likely AI-agent readiness gaps on www.rajapack.eu: Publish robots.txt so automated clients can understand crawl preferences. Publish sitemap.xml or reference sitemap locations from robots.txt. Add /llms.txt with a concise Markdown map of agent-relevant pages. These matter as more customers ask AI assistants to compare providers, find product details, check availability, or identify the right contact route.
+
+The most relevant angles for your site look like crawler policy clarity, structured data for agent understanding, discoverability through sitemaps, agent-facing policy and discovery endpoints, hard-to-detect public contact channel. I built AgentReady to show these issues in a short, practical report without logins or invasive testing.
+
+Would it be useful if I sent over the readout for www.rajapack.eu?
+
+Best,",manual seed
+Kärcher,https://www.kaercher.com/,Germany,Manufacturer and product catalog,80,69,,warn: Agent access policy is published | warn: Support path is detectable,,+497195140,https://www.kaercher.com/; https://www.kaercher.com/int/support.html; https://www.kaercher.com/int/support/dealer-search.html; https://www.kaercher.com/int/support/service.html; https://www.kaercher.com/int/support/service/downloads/safety-data-sheets.html; https://www.kaercher.com/int/support/service/faqs.html; https://www.kaercher.com/int/support/service/spare-parts.html,agent-facing policy and discovery endpoints; hard-to-detect public contact channel,Product discovery and support content are website-led,"Subject: Quick AI-agent readiness check for Kärcher
+
+Hi Kärcher team,
+
+I noticed a few likely AI-agent readiness gaps on www.kaercher.com: Publish an agent access policy that explains allowed agent behavior, rate limits, and contact paths. Publish crawlable support/contact pages and expected response paths. Publish security.txt with vulnerability reporting contact information. These matter as more customers ask AI assistants to compare providers, find product details, check availability, or identify the right contact route.
+
+The most relevant angles for your site look like agent-facing policy and discovery endpoints, hard-to-detect public contact channel. I built AgentReady to show these issues in a short, practical report without logins or invasive testing.
+
+Would it be useful if I sent over the readout for www.kaercher.com?
+
+Best,",manual seed
+Rational,https://www.rational-online.com/,Germany,Manufacturer and dealer lead generation,90,49,,warn: Structured data is available | warn: Agent access policy is published | warn: Support path is detectable,,,https://www.rational-online.com/; https://www.rational-online.com/contact; https://www.rational-online.com/impressum; https://www.rational-online.com/imprint; https://www.rational-online.com/kontakt,crawler policy clarity; structured data for agent understanding; discoverability through sitemaps; agent-facing policy and discovery endpoints; hard-to-detect public contact channel,Product discovery and dealer/contact routing,"Subject: Quick AI-agent readiness check for Rational
+
+Hi Rational team,
+
+I noticed a few likely AI-agent readiness gaps on www.rational-online.com: Publish robots.txt so automated clients can understand crawl preferences. Publish sitemap.xml or reference sitemap locations from robots.txt. Add /llms.txt with a concise Markdown map of agent-relevant pages. These matter as more customers ask AI assistants to compare providers, find product details, check availability, or identify the right contact route.
+
+The most relevant angles for your site look like crawler policy clarity, structured data for agent understanding, discoverability through sitemaps, agent-facing policy and discovery endpoints, hard-to-detect public contact channel. I built AgentReady to show these issues in a short, practical report without logins or invasive testing.
+
+Would it be useful if I sent over the readout for www.rational-online.com?
+
+Best,",manual seed
+Viessmann Climate Solutions,https://www.viessmann-climatesolutions.com/,Germany,Manufacturer and installer lead generation,80,60,,warn: Agent access policy is published | warn: Support path is detectable,,,https://www.viessmann-climatesolutions.com/; https://www.viessmann-climatesolutions.com/de/digitale-services.html; https://www.viessmann-climatesolutions.com/de/impressum.html; https://www.viessmann-climatesolutions.com/de/karriere/jobsuche/kundenservice.html; https://www.viessmann-climatesolutions.com/de/kontakt.html; https://www.viessmann-climatesolutions.com/de/kontakt/betrugswarnung.html; https://www.viessmann-climatesolutions.com/de/kontakt/deine-anfrage.html,agent-facing policy and discovery endpoints; hard-to-detect public contact channel,Product discovery and partner routing,"Subject: Quick AI-agent readiness check for Viessmann Climate Solutions
+
+Hi Viessmann Climate Solutions team,
+
+I noticed a few likely AI-agent readiness gaps on www.viessmann-climatesolutions.com: Add /llms.txt with a concise Markdown map of agent-relevant pages. Expose clean Markdown alternatives for high-value pages where possible. Add Organization, LocalBusiness, WebSite, SoftwareApplication, or Service JSON-LD. These matter as more customers ask AI assistants to compare providers, find product details, check availability, or identify the right contact route.
+
+The most relevant angles for your site look like agent-facing policy and discovery endpoints, hard-to-detect public contact channel. I built AgentReady to show these issues in a short, practical report without logins or invasive testing.
+
+Would it be useful if I sent over the readout for www.viessmann-climatesolutions.com?
+
+Best,",manual seed
+Uponor,https://www.uponor.com/,Finland,Manufacturer and technical catalog,80,73,,warn: Agent access policy is published,,+43 2236 23003-0; +4932221090866; Kundenservice: +49 32 221 090 866; Zentrale: +49 9521 690-0,https://www.uponor.com/; https://www.uponor.com/de-de/service/fachhandwerker-suche; https://www.uponor.com/de-de/service/kontakte; https://www.uponor.com/de-de/service/produktdatensaetze; https://www.uponor.com/de-de/service/services-fuer-handwerker; https://www.uponor.com/de-de/service/uponor-aussendienst; https://www.uponor.com/de-de/service/webinare,agent-facing policy and discovery endpoints; hard-to-detect public contact channel,Technical content and partner routing,"Subject: Quick AI-agent readiness check for Uponor
+
+Hi Uponor team,
+
+I noticed a few likely AI-agent readiness gaps on www.uponor.com: Add /llms.txt with a concise Markdown map of agent-relevant pages. Expose clean Markdown alternatives for high-value pages where possible. Publish an agent access policy that explains allowed agent behavior, rate limits, and contact paths. These matter as more customers ask AI assistants to compare providers, find product details, check availability, or identify the right contact route.
+
+The most relevant angles for your site look like agent-facing policy and discovery endpoints, hard-to-detect public contact channel. I built AgentReady to show these issues in a short, practical report without logins or invasive testing.
+
+Would it be useful if I sent over the readout for www.uponor.com?
+
+Best,",manual seed
+Wavin,https://www.wavin.com/,Netherlands,Manufacturer and technical catalog,80,61,,warn: Agent access policy is published | warn: Support path is detectable,,,https://www.wavin.com/; https://www.wavin.com/global/en/about-us; https://www.wavin.com/global/en/about-us/purpose; https://www.wavin.com/global/en/building-design-services; https://www.wavin.com/global/en/news-and-cases/wavin-take-back-service-turning-used-pipes-into-new-products-globally; https://www.wavin.com/global/en/services; https://www.wavin.com/global/en/tools-services/bim-revit,discoverability through sitemaps; agent-facing policy and discovery endpoints; hard-to-detect public contact channel,Technical content and product discovery,"Subject: Quick AI-agent readiness check for Wavin
+
+Hi Wavin team,
+
+I noticed a few likely AI-agent readiness gaps on www.wavin.com: Publish sitemap.xml or reference sitemap locations from robots.txt. Add /llms.txt with a concise Markdown map of agent-relevant pages. Expose clean Markdown alternatives for high-value pages where possible. These matter as more customers ask AI assistants to compare providers, find product details, check availability, or identify the right contact route.
+
+The most relevant angles for your site look like discoverability through sitemaps, agent-facing policy and discovery endpoints, hard-to-detect public contact channel. I built AgentReady to show these issues in a short, practical report without logins or invasive testing.
+
+Would it be useful if I sent over the readout for www.wavin.com?
+
+Best,",manual seed

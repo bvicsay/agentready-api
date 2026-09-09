@@ -1,12 +1,10 @@
+"use strict";
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __commonJS = (cb, mod) => function __require() {
-  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-};
 var __export = (target, all) => {
   for (var name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
@@ -29,105 +27,18 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// src/public-fetch.js
-var require_public_fetch = __commonJS({
-  "src/public-fetch.js"(exports2, module2) {
-    var dns = require("node:dns");
-    var { AsyncLocalStorage } = require("node:async_hooks");
-    var ipaddr = require("ipaddr.js");
-    var { fetch: request, Agent } = require("undici");
-    var scanContext2 = new AsyncLocalStorage();
-    function isPublicAddress2(address) {
-      try {
-        return ipaddr.process(address).range() === "unicast";
-      } catch {
-        return false;
-      }
-    }
-    function validateUrl2(value) {
-      const url = new URL(value);
-      const hostname = url.hostname.replace(/^\[|\]$/g, "");
-      if (!["http:", "https:"].includes(url.protocol) || url.username || url.password || url.port && !["80", "443"].includes(url.port)) throw new Error("Only public HTTP(S) URLs on standard ports can be scanned.");
-      if (hostname === "localhost" || hostname.endsWith(".localhost") || hostname.endsWith(".local") || !hostname.includes(".") && !ipaddr.isValid(hostname)) throw new Error("Local network addresses cannot be scanned.");
-      if (ipaddr.isValid(hostname) && !isPublicAddress2(hostname)) throw new Error("Private or reserved network addresses cannot be scanned.");
-      return url;
-    }
-    var dispatcher = new Agent({ connect: {
-      // Validate the actual DNS results used by the socket, not a separate preflight.
-      lookup(hostname, options, callback) {
-        dns.lookup(hostname, { all: true, verbatim: true }, (error, addresses) => {
-          if (error) return callback(error);
-          if (!addresses.length || addresses.some(({ address }) => !isPublicAddress2(address))) return callback(new Error("Private or reserved DNS destination blocked."));
-          if (options.all) callback(null, addresses);
-          else callback(null, addresses[0].address, addresses[0].family);
-        });
-      }
-    } });
-    async function fetch2(value, options = {}) {
-      const context = scanContext2.getStore();
-      const first = context && context.requests++ === 0;
-      try {
-        let url = validateUrl2(value);
-        if (context?.rootError) throw new Error(context.rootError);
-        if (first) context.origins = /* @__PURE__ */ new Set([url.origin]);
-        if (context?.origins && !context.origins.has(url.origin)) throw new Error("Cross-site scan requests are not allowed.");
-        const signal = context ? AbortSignal.any([context.signal, options.signal].filter(Boolean)) : options.signal;
-        for (let redirect = 0; redirect <= 4; redirect++) {
-          signal?.throwIfAborted();
-          const response = await request(url, { ...options, signal, redirect: "manual", dispatcher });
-          if ([301, 302, 303, 307, 308].includes(response.status)) {
-            await response.body?.cancel();
-            const location = response.headers.get("location");
-            if (!location || redirect === 4) throw new Error("Invalid or excessive redirects.");
-            url = validateUrl2(new URL(location, url));
-            if (first) context.origins.add(url.origin);
-            else if (context?.origins && !context.origins.has(url.origin)) throw new Error("Cross-site scan redirect blocked.");
-            continue;
-          }
-          if (first && !response.ok) context.rootError = `The website returned HTTP ${response.status}.`;
-          const chunks = [];
-          let size = 0;
-          if (response.body) {
-            const reader = response.body.getReader();
-            try {
-              while (true) {
-                const { done, value: chunk } = await reader.read();
-                if (done) break;
-                size += chunk.byteLength;
-                if (size > 75e4) {
-                  await reader.cancel();
-                  throw new Error("Response exceeds the scan size limit.");
-                }
-                chunks.push(Buffer.from(chunk));
-              }
-            } finally {
-              reader.releaseLock();
-            }
-          }
-          const body = Buffer.concat(chunks);
-          return { url: url.href, redirected: redirect > 0, headers: response.headers, status: response.status, ok: response.ok, arrayBuffer: async () => body.buffer.slice(body.byteOffset, body.byteOffset + body.byteLength) };
-        }
-      } catch (error) {
-        if (first) context.rootError = error.message;
-        throw error;
-      }
-    }
-    module2.exports = { fetch: fetch2, scanContext: scanContext2, validateUrl: validateUrl2, isPublicAddress: isPublicAddress2 };
-  }
-});
-
 // src/agentready-entry.ts
 var agentready_entry_exports = {};
 __export(agentready_entry_exports, {
   builtInRules: () => builtInRules,
-  isPublicAddress: () => import_public_fetch.isPublicAddress,
+  isPublicAddress: () => isPublicAddress,
   runScan: () => runScan,
-  scanContext: () => import_public_fetch.scanContext,
-  validateUrl: () => import_public_fetch.validateUrl
+  scanContext: () => scanContext,
+  validateUrl: () => validateUrl
 });
 module.exports = __toCommonJS(agentready_entry_exports);
 
-// vendor/agentready/packages/types/src/index.ts
+// packages/types/src/index.ts
 var agentReadyVersion = "0.1.0-alpha.0";
 var profiles = [
   "website",
@@ -138,7 +49,7 @@ var profiles = [
   "agent-service"
 ];
 
-// vendor/agentready/packages/core/src/options.ts
+// packages/core/src/options.ts
 function normalizeOptions(options) {
   return {
     target: options.target,
@@ -167,10 +78,10 @@ function clampNumber(value, min, max) {
   return Math.max(min, Math.min(max, value));
 }
 
-// vendor/agentready/packages/core/src/html.ts
+// packages/core/src/html.ts
 var cheerio = __toESM(require("cheerio"), 1);
 
-// vendor/agentready/packages/core/src/utils.ts
+// packages/core/src/utils.ts
 var SECRET_PATTERNS = [
   /sk-[A-Za-z0-9_-]{16,}/g,
   /xox[baprs]-[A-Za-z0-9-]{16,}/g,
@@ -255,7 +166,7 @@ function successful(record2) {
   return Boolean(record2 && record2.status >= 200 && record2.status < 300 && !record2.error);
 }
 
-// vendor/agentready/packages/core/src/html.ts
+// packages/core/src/html.ts
 function parseHtmlPage(url, html) {
   const $ = cheerio.load(html);
   const jsonLd = [];
@@ -340,7 +251,7 @@ function jsonLdHasKey(values, key) {
   return values.some(visit);
 }
 
-// vendor/agentready/packages/core/src/openapi.ts
+// packages/core/src/openapi.ts
 function looksLikeOpenApi(body, contentType = "") {
   const normalized = body.trim();
   if (!normalized) return false;
@@ -353,7 +264,7 @@ function looksLikeOpenApi(body, contentType = "") {
   return normalized.includes('"paths"') && normalized.includes('"info"') && normalized.includes('"openapi"');
 }
 
-// vendor/agentready/packages/core/src/profile.ts
+// packages/core/src/profile.ts
 function inferProfile(snapshot) {
   const allJsonLd2 = snapshot.pages.flatMap((page) => page.jsonLd);
   const types = jsonLdTypes(allJsonLd2);
@@ -368,11 +279,114 @@ function inferProfile(snapshot) {
   return "website";
 }
 
-// vendor/agentready/packages/core/src/snapshot.ts
+// packages/core/src/snapshot.ts
 var robotsParserModule = __toESM(require("robots-parser"), 1);
 
-// vendor/agentready/packages/core/src/http.ts
-var import_undici = __toESM(require_public_fetch(), 1);
+// src/public-fetch.ts
+var import_node_async_hooks = require("node:async_hooks");
+var import_node_dns = __toESM(require("node:dns"), 1);
+var import_ipaddr = __toESM(require("ipaddr.js"), 1);
+var import_undici = require("undici");
+var scanContext = new import_node_async_hooks.AsyncLocalStorage();
+function isPublicAddress(address) {
+  try {
+    return import_ipaddr.default.process(address).range() === "unicast";
+  } catch {
+    return false;
+  }
+}
+function validateUrl(value) {
+  const url = new URL(value);
+  const hostname = url.hostname.replace(/^\[|\]$/g, "");
+  const unsupportedAddress = hostname === "localhost" || hostname.endsWith(".localhost") || hostname.endsWith(".local") || !hostname.includes(".") && !import_ipaddr.default.isValid(hostname);
+  if (!["http:", "https:"].includes(url.protocol) || url.username || url.password || url.port && !["80", "443"].includes(url.port) || unsupportedAddress || import_ipaddr.default.isValid(hostname) && !isPublicAddress(hostname)) {
+    throw new Error("Only public HTTP(S) URLs on standard ports can be scanned.");
+  }
+  return url;
+}
+var dispatcher = new import_undici.Agent({
+  connect: {
+    // Validate the actual DNS results used by the socket, not a separate preflight.
+    lookup(hostname, options, callback) {
+      import_node_dns.default.lookup(hostname, { all: true, verbatim: true }, (error, addresses) => {
+        if (error) return callback(error);
+        if (!addresses.length || addresses.some(({ address }) => !isPublicAddress(address))) {
+          return callback(new Error("Private or reserved DNS destination blocked."));
+        }
+        if (options.all) return callback(null, addresses);
+        const first = addresses[0];
+        return callback(null, first.address, first.family);
+      });
+    }
+  }
+});
+async function fetch(value, options = {}) {
+  const context = scanContext.getStore();
+  const isRootRequest = context ? context.requests++ === 0 : false;
+  try {
+    let url = validateUrl(value);
+    if (context?.rootError) throw new Error(context.rootError);
+    if (isRootRequest && context) context.origins = /* @__PURE__ */ new Set([url.origin]);
+    if (context?.origins && !context.origins.has(url.origin)) {
+      throw new Error("Cross-site scan requests are not allowed.");
+    }
+    const signal = context ? AbortSignal.any([context.signal, options.signal].filter((item) => Boolean(item))) : options.signal;
+    for (let redirect = 0; redirect <= 4; redirect += 1) {
+      signal?.throwIfAborted();
+      const response = await (0, import_undici.fetch)(url, { ...options, signal, redirect: "manual", dispatcher });
+      if ([301, 302, 303, 307, 308].includes(response.status)) {
+        await response.body?.cancel();
+        const location = response.headers.get("location");
+        if (!location || redirect === 4) throw new Error("Invalid or excessive redirects.");
+        url = validateUrl(new URL(location, url));
+        if (isRootRequest) context?.origins?.add(url.origin);
+        else if (context?.origins && !context.origins.has(url.origin)) {
+          throw new Error("Cross-site scan redirect blocked.");
+        }
+        continue;
+      }
+      if (isRootRequest && !response.ok) {
+        context.rootError = `The website returned HTTP ${response.status}.`;
+      }
+      const chunks = [];
+      let size = 0;
+      if (response.body) {
+        const reader = response.body.getReader();
+        try {
+          while (true) {
+            const { done, value: value2 } = await reader.read();
+            if (done) break;
+            size += value2.byteLength;
+            if (size > 75e4) {
+              await reader.cancel();
+              throw new Error("Response exceeds the scan size limit.");
+            }
+            chunks.push(Buffer.from(value2));
+          }
+        } finally {
+          reader.releaseLock();
+        }
+      }
+      const body = Buffer.concat(chunks);
+      return {
+        url: url.href,
+        redirected: redirect > 0,
+        headers: response.headers,
+        status: response.status,
+        ok: response.ok,
+        arrayBuffer: async () => body.buffer.slice(body.byteOffset, body.byteOffset + body.byteLength)
+      };
+    }
+    throw new Error("Invalid or excessive redirects.");
+  } catch (error) {
+    if (isRootRequest && context) {
+      context.rootError = error instanceof Error ? error.message : "The website could not be fetched.";
+    }
+    throw error;
+  }
+}
+
+// packages/core/src/http.ts
 var DEFAULT_USER_AGENT = "AgentReady/0.1.0-alpha.0 (+https://github.com/swarmclawai/agentready; passive scanner)";
 var MAX_BODY_BYTES = 75e4;
 var HttpClient = class {
@@ -404,7 +418,7 @@ var HttpClient = class {
           accept: method === "HEAD" ? "*/*" : "text/html,application/xhtml+xml,application/json,application/xml,text/plain,*/*;q=0.8"
         }
       };
-      const response = await (0, import_undici.fetch)(url, init);
+      const response = await fetch(url, init);
       const headers = {};
       response.headers.forEach((value, key) => {
         headers[key.toLowerCase()] = value;
@@ -481,7 +495,7 @@ function shouldReadBody(contentType) {
   ].some((allowed) => normalized.includes(allowed));
 }
 
-// vendor/agentready/packages/core/src/sitemap.ts
+// packages/core/src/sitemap.ts
 var import_fast_xml_parser = require("fast-xml-parser");
 function parseSitemapUrls(xml) {
   if (!xml.trim()) return [];
@@ -501,7 +515,7 @@ function extractLocs(value) {
   return current.concat(Object.values(object).flatMap(extractLocs));
 }
 
-// vendor/agentready/packages/core/src/snapshot.ts
+// packages/core/src/snapshot.ts
 var BASE_PATHS = [
   "/robots.txt",
   "/sitemap.xml",
@@ -628,7 +642,7 @@ async function collectSnapshot(options) {
   };
 }
 
-// vendor/agentready/packages/core/src/score.ts
+// packages/core/src/score.ts
 var profileWeights = {
   website: [
     { key: "discoverability", label: "Discoverability", weight: 35, categories: ["discoverability"] },
@@ -729,7 +743,7 @@ function statusValue(status) {
   }
 }
 
-// vendor/agentready/packages/core/src/scanner.ts
+// packages/core/src/scanner.ts
 async function runScan(options, rules) {
   const normalizedOptions = normalizeOptions(options);
   const snapshot = await collectSnapshot(normalizedOptions);
@@ -783,7 +797,7 @@ async function runScan(options, rules) {
   };
 }
 
-// vendor/agentready/packages/core/src/llms.ts
+// packages/core/src/llms.ts
 function parseLlmsTxt(markdown) {
   const lines = markdown.split(/\r?\n/);
   const hasH1 = lines.some((line) => /^#\s+\S/.test(line.trim()));
@@ -810,7 +824,7 @@ function parseLlmsTxt(markdown) {
   };
 }
 
-// vendor/agentready/packages/rules/src/helpers.ts
+// packages/rules/src/helpers.ts
 var allProfiles = [...profiles];
 var commerceProfiles = ["merchant", "marketplace"];
 var apiProfiles = ["api", "marketplace", "mcp-server", "agent-service"];
@@ -938,7 +952,7 @@ function securityRegexes() {
   ];
 }
 
-// vendor/agentready/packages/rules/src/builtins.ts
+// packages/rules/src/builtins.ts
 var builtInRules = [
   defineRule(
     baseDefinition({
@@ -1639,9 +1653,6 @@ var builtInRules = [
     }
   )
 ];
-
-// src/agentready-entry.ts
-var import_public_fetch = __toESM(require_public_fetch());
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   builtInRules,

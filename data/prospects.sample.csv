@@ -1,0 +1,23 @@
+company,website,country,sector,fit_score,agentready_score,critical_findings,major_findings,public_role_emails,public_phone_numbers,contact_pages,ai_readiness_angles,targeting_notes,draft_email,source
+Fjord Line,https://www.fjordline.com/,Norway,Travel and ferry booking,95,76,warn: CORS headers are not obviously unsafe,warn: Agent access policy is published | warn: Support path is detectable,info@fjordline.com,+4751464099,https://www.fjordline.com/; https://www.fjordline.com/contact; https://www.fjordline.com/en/p/about-fjord-line; https://www.fjordline.com/en/p/help-and-contact; https://www.fjordline.com/impressum; https://www.fjordline.com/imprint; https://www.fjordline.com/kontakt,discoverability through sitemaps; agent-facing policy and discovery endpoints,Website-based ticketing and route discovery,"Subject: Quick AI-agent readiness check for Fjord Line
+
+Hi Fjord Line team,
+
+I noticed a few likely AI-agent readiness gaps on www.fjordline.com: Publish sitemap.xml or reference sitemap locations from robots.txt. Add /llms.txt with a concise Markdown map of agent-relevant pages. Expose clean Markdown alternatives for high-value pages where possible. These matter as more customers ask AI assistants to compare providers, find product details, check availability, or identify the right contact route.
+
+The most relevant angles for your site look like discoverability through sitemaps, agent-facing policy and discovery endpoints. I built AgentReady to show these issues in a short, practical report without logins or invasive testing.
+
+Would it be useful if I sent over the readout for www.fjordline.com?
+
+Best,",manual seed
+Pentland Ferries,https://www.pentlandferries.co.uk/,United Kingdom,Travel and ferry booking,85,75,,warn: Agent access policy is published | warn: Support path is detectable,sales@pentlandferries.co.uk,,https://www.pentlandferries.co.uk/; https://www.pentlandferries.co.uk/contact; https://www.pentlandferries.co.uk/impressum; https://www.pentlandferries.co.uk/imprint; https://www.pentlandferries.co.uk/kontakt,discoverability through sitemaps; agent-facing policy and discovery endpoints,Website-based ticketing and route discovery,"Subject: Quick AI-agent readiness check for Pentland Ferries
+
+Hi Pentland Ferries team,
+
+I noticed a few likely AI-agent readiness gaps on www.pentlandferries.co.uk: Publish sitemap.xml or reference sitemap locations from robots.txt. Publish an agent access policy that explains allowed agent behavior, rate limits, and contact paths. Publish crawlable support/contact pages and expected response paths. These matter as more customers ask AI assistants to compare providers, find product details, check availability, or identify the right contact route.
+
+The most relevant angles for your site look like discoverability through sitemaps, agent-facing policy and discovery endpoints. I built AgentReady to show these issues in a short, practical report without logins or invasive testing.
+
+Would it be useful if I sent over the readout for www.pentlandferries.co.uk?
+
+Best,",manual seed

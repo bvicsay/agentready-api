@@ -17,21 +17,25 @@ curl -X POST https://api.example.com/api/scan \
 
 The complete request and response contract is in [`openapi.json`](openapi.json).
 
-## Where AgentReady is installed
+## AgentReady source
 
-AgentReady is a pinned Git submodule at `vendor/agentready`. Clone this API with
-its submodule and build the bundled TypeScript rules:
+AgentReady is part of this repository. Its packages, source, tests, and docs
+live directly in `packages/` and `docs/`; the API is an additional interface
+over the same scanner code. A normal clone contains everything needed to build
+both the scanner and the API:
 
 ```sh
-git clone --recurse-submodules git@github.com:bvicsay/agentready-api.git
+git clone git@github.com:bvicsay/agentready-api.git
 cd agentready-api
 npm ci
 npm run build
 ```
 
-`src/build-engine.mjs` bundles the upstream rules into
-`src/agentready-engine.cjs`. Docker runs the same build automatically, so no
-separate AgentReady installation is needed on the VPS.
+`src/agentready-entry.ts` is the single integration seam: it imports the local
+`packages/core` scanner and `packages/rules` definitions.
+`src/build-engine.mjs` bundles them into `src/agentready-engine.cjs`. Docker
+runs the same build automatically, so no separate AgentReady checkout or
+submodule is needed on the VPS.
 
 ## Local run
 
@@ -87,9 +91,19 @@ security, SEO or AI-visibility guarantee.
 
 ```sh
 npm run build
+npm run typecheck
+npm run agentready:typecheck
 npm audit
 ```
 
-The bundled engine is pinned from AgentReady. Review upstream changes before
-updating it. `AGENTREADY-LICENSE` contains its original license; `LICENSE`
-covers this repository.
+The application code is strict TypeScript. The generated
+`src/agentready-engine.cjs` file is the build artifact that bridges the pinned
+AgentReady TypeScript source to the Node runtime; do not edit it by hand.
+
+## Upstream credit
+
+This project uses [AgentReady](https://github.com/swarmclawai/agentready),
+embedded from commit `70c516a7b3a8df261ddc6a3d1d78d646a1d7c37b`. Its original
+README is preserved in `AGENTREADY-README.md`, and its Apache-2.0 license is
+preserved in `AGENTREADY-LICENSE`. `LICENSE` covers this repository's original
+API code.
