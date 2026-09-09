@@ -1,4 +1,4 @@
-import { ApiError, errorResponse, requireBearer } from './api-platform.js'
+import { ApiError, authenticateApiKey, errorResponse } from './api-platform.js'
 import { scan, scanInput } from './scan-service.js'
 
 type Request = {
@@ -20,7 +20,7 @@ export function createHandler({ present = (result: unknown) => result } = {}) {
 
     try {
       if (req.method !== 'POST') throw new ApiError(405, 'method_not_allowed', 'Use POST with a JSON body.')
-      requireBearer(req.headers?.authorization)
+      await authenticateApiKey(req.headers?.authorization)
       return res.status(200).json(present(await scan(scanInput(req.body as Record<string, unknown>))))
     } catch (error) {
       const { status, body } = errorResponse(error)

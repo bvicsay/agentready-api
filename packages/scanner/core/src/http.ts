@@ -1,5 +1,6 @@
 import { fetch, type RequestInit } from "undici";
 import type { FetchRecord, RequiredScannerOptions } from "../../types/src/index.js";
+import { fetchPublicUrl } from "./public-network.js";
 
 export const DEFAULT_USER_AGENT =
   "AgentReady/0.1.0-alpha.0 (+https://github.com/swarmclawai/agentready; passive scanner)";
@@ -9,21 +10,27 @@ const MAX_BODY_BYTES = 750_000;
 export class HttpClient {
   private requests = 0;
   private lastRequestAt = 0;
+  private readonly allowedOrigins: Set<string>;
   readonly records: FetchRecord[] = [];
 
-  constructor(private readonly options: RequiredScannerOptions) {}
+  constructor(private readonly options: RequiredScannerOptions) {
+    this.allowedOrigins = new Set([new URL(options.target).origin]);
+  }
 
   get remainingRequests(): number {
     return Math.max(0, this.options.maxRequests - this.requests);
   }
 
   async request(url: string, method: "GET" | "HEAD" = "GET"): Promise<FetchRecord> {
+    this.options.signal?.throwIfAborted();
     if (this.requests >= this.options.maxRequests) {
       return this.recordError(url, method, "max request limit reached", 0);
     }
 
+    const isRootRequest = this.requests === 0;
     this.requests += 1;
     await this.throttle();
+    this.options.signal?.throwIfAborted();
 
     const started = Date.now();
     const controller = new AbortController();
@@ -32,8 +39,10 @@ export class HttpClient {
     try {
       const init: RequestInit = {
         method,
-        redirect: "follow",
-        signal: controller.signal,
+        redirect: this.options.publicOnly ? "manual" : "follow",
+        signal: this.options.signal
+          ? AbortSignal.any([controller.signal, this.options.signal])
+          : controller.signal,
         headers: {
           "user-agent": DEFAULT_USER_AGENT,
           accept:
@@ -42,7 +51,9 @@ export class HttpClient {
               : "text/html,application/xhtml+xml,application/json,application/xml,text/plain,*/*;q=0.8"
         }
       };
-      const response = await fetch(url, init);
+      const response = this.options.publicOnly
+        ? await fetchPublicUrl(url, init, this.allowedOrigins, isRootRequest)
+        : await fetch(url, init);
       const headers: Record<string, string> = {};
       response.headers.forEach((value, key) => {
         headers[key.toLowerCase()] = value;
@@ -51,9 +62,7 @@ export class HttpClient {
       const contentType = headers["content-type"] ?? "";
       let body = "";
       if (method === "GET" && shouldReadBody(contentType)) {
-        const raw = await response.arrayBuffer();
-        const bytes = raw.byteLength > MAX_BODY_BYTES ? raw.slice(0, MAX_BODY_BYTES) : raw;
-        body = new TextDecoder("utf-8", { fatal: false }).decode(bytes);
+        body = await readBody(response.body as unknown as ReadableStream<Uint8Array> | null);
       }
 
       const record: FetchRecord = {
@@ -71,6 +80,7 @@ export class HttpClient {
       this.records.push(record);
       return record;
     } catch (error) {
+      this.options.signal?.throwIfAborted();
       const message = error instanceof Error ? error.message : String(error);
       return this.recordError(url, method, message, Date.now() - started);
     } finally {
@@ -106,6 +116,34 @@ export class HttpClient {
     }
     this.lastRequestAt = Date.now();
   }
+}
+
+async function readBody(body: ReadableStream<Uint8Array> | null): Promise<string> {
+  if (!body) return "";
+
+  const reader = body.getReader();
+  const chunks: Uint8Array[] = [];
+  let size = 0;
+  try {
+    while (size < MAX_BODY_BYTES) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      const remaining = MAX_BODY_BYTES - size;
+      chunks.push(value.byteLength > remaining ? value.slice(0, remaining) : value);
+      size += Math.min(value.byteLength, remaining);
+      if (value.byteLength > remaining) await reader.cancel();
+    }
+  } finally {
+    reader.releaseLock();
+  }
+
+  const bytes = new Uint8Array(size);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return new TextDecoder("utf-8", { fatal: false }).decode(bytes);
 }
 
 function shouldReadBody(contentType: string): boolean {

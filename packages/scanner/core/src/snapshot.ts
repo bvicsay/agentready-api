@@ -2,6 +2,7 @@ import * as robotsParserModule from "robots-parser";
 import type { FetchRecord, ParsedHtmlPage, RequiredScannerOptions, TargetSnapshot } from "../../types/src/index.js";
 import { parseHtmlPage } from "./html.js";
 import { HttpClient, DEFAULT_USER_AGENT } from "./http.js";
+import { TargetUnavailableError } from "./scanner-errors.js";
 import { parseSitemapUrls } from "./sitemap.js";
 import { normalizeTarget, pathKey, resolveSameOrigin, rootPath, unique } from "./utils.js";
 
@@ -85,6 +86,9 @@ export async function collectSnapshot(options: RequiredScannerOptions): Promise<
   const client = new HttpClient(options);
 
   const root = await client.request(targetUrl.href);
+  if (options.requireSuccessfulTarget && !root.ok) {
+    throw new TargetUnavailableError(root.error ?? `The website returned HTTP ${root.status}.`);
+  }
   const robots = await client.request(rootPath(origin, "/robots.txt"));
   const robotsRules =
     robots.status >= 200 && robots.status < 300

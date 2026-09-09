@@ -1,8 +1,7 @@
 # AgentReady API
 
-A small bearer-authenticated HTTP API that scans public websites with the
-[AgentReady](https://github.com/swarmclawai/agentready) engine and returns
-machine-readable readiness findings.
+A customer API secured by Clerk API keys. It scans public websites with the
+scanner in `packages/scanner` and returns machine-readable readiness findings.
 
 ## Endpoint
 
@@ -10,19 +9,25 @@ machine-readable readiness findings.
 
 ```sh
 curl -X POST https://api.example.com/api/scan \
-  -H 'Authorization: Bearer YOUR_API_BEARER_TOKEN' \
+  -H 'Authorization: Bearer YOUR_CLERK_API_KEY' \
   -H 'Content-Type: application/json' \
   -d '{"url":"https://example.com","profile":"auto"}'
 ```
 
 The complete request and response contract is in [`openapi.json`](openapi.json).
 
+Free accounts are limited to 60 scans per hour by default. Successful responses
+include `RateLimit-Limit`, `RateLimit-Remaining`, and `RateLimit-Reset`.
+At the limit, the API returns `429 rate_limit_exceeded` with a `Retry-After`
+header and directs customers to `barnabas@adaptmypage.com` for a higher limit.
+Set `API_RATE_LIMIT`, `API_RATE_LIMIT_WINDOW_MS`, and `SUPPORT_EMAIL` to
+override these deployment defaults.
+
 ## AgentReady source
 
-AgentReady is part of this repository. Its packages, source, tests, and docs
-live directly in `packages/` and `docs/`; the API is an additional interface
-over the same scanner code. A normal clone contains everything needed to build
-both the scanner and the API:
+The scanner is part of this repository. Its core, rules, report, types, and CLI
+packages live under `packages/scanner`; the API calls that source directly. A
+normal clone contains everything needed to build both the scanner and the API:
 
 ```sh
 git clone git@github.com:bvicsay/agentready-api.git
@@ -31,11 +36,10 @@ npm ci
 npm run build
 ```
 
-`src/agentready-entry.ts` is the single integration seam: it imports the local
-`packages/core` scanner and `packages/rules` definitions.
-`src/build-engine.mjs` bundles them into `src/agentready-engine.cjs`. Docker
-runs the same build automatically, so no separate AgentReady checkout or
-submodule is needed on the VPS.
+`src/scan-service.ts` imports `packages/scanner/core` and
+`packages/scanner/rules` directly. Docker builds those workspaces before
+starting the API, so there is no generated engine bundle, separate checkout, or
+submodule on the VPS.
 
 ## Local run
 
@@ -46,13 +50,17 @@ npm start
 curl http://localhost:3000/healthz
 ```
 
-Set one secret environment variable:
+Create a Clerk application, enable **User API keys** in the Clerk Dashboard,
+then set the backend secret key:
 
 ```dotenv
-API_BEARER_TOKEN=replace-with-a-long-random-secret
+CLERK_SECRET_KEY=sk_test_replace-with-your-clerk-secret-key
 ```
 
-Generate a strong value with `openssl rand -hex 32`. Keep `.env` out of Git.
+Keep this secret server-side and keep `.env` out of Git. Customer keys are
+created and revoked in Clerk and are verified on every API request. See
+[`docs/account-management.md`](docs/account-management.md) for the dashboard
+and external-website setup.
 
 ## Docker
 
@@ -74,7 +82,7 @@ git tag v0.1.0 && git push origin v0.1.0
 docker pull ghcr.io/bvicsay/agentready-api:sha-COMMIT_SHA
 ```
 
-Run that immutable image on an Ubuntu/Docker VPS with `API_BEARER_TOKEN` supplied
+Run that immutable image on an Ubuntu/Docker VPS with `CLERK_SECRET_KEY` supplied
 only by the host environment or a secret manager. Add firewall and request-rate
 limits at the proxy before broad public use.
 
@@ -92,13 +100,11 @@ security, SEO or AI-visibility guarantee.
 ```sh
 npm run build
 npm run typecheck
-npm run agentready:typecheck
+npm run scanner:typecheck
 npm audit
 ```
 
-The application code is strict TypeScript. The generated
-`src/agentready-engine.cjs` file is the build artifact that bridges the pinned
-AgentReady TypeScript source to the Node runtime; do not edit it by hand.
+The application and scanner code are strict TypeScript.
 
 ## Upstream credit
 

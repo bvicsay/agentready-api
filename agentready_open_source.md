@@ -518,12 +518,13 @@ agentready/
   apps/
     web/
   packages/
-    cli/
-    core/
-    rules/
-    report/
-    adapters/
-    types/
+    scanner/
+      cli/
+      core/
+      rules/
+      report/
+      adapters/
+      types/
   examples/
     merchant/
     api-seller/
@@ -540,23 +541,23 @@ agentready/
   pnpm-workspace.yaml
 ```
 
-### `packages/cli`
+### `packages/scanner/cli`
 
 Command-line interface.
 
-### `packages/core`
+### `packages/scanner/core`
 
 Scanner engine, fetcher, parser, rule runner, scoring logic.
 
-### `packages/rules`
+### `packages/scanner/rules`
 
 Public rule library.
 
-### `packages/report`
+### `packages/scanner/report`
 
 Markdown, JSON, HTML, and text report generation.
 
-### `packages/adapters`
+### `packages/scanner/adapters`
 
 Optional integrations for Playwright, OpenAPI, MCP metadata, x402 checks, and hosted scanning.
 
@@ -1108,4 +1109,3 @@ The first goal is to make one useful report that a merchant, developer, or agenc
 AgentReady should become the open-source standard for answering one question:
 
 > Can agents safely and reliably use this business?
-

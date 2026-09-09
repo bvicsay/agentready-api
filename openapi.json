@@ -3,7 +3,7 @@
   "info": {
     "title": "AdaptMyPage Agent Readiness API",
     "version": "1.0.0",
-    "description": "Bearer-authenticated, passive website agent-readiness audits powered by the AgentReady alpha engine. No email, account or newsletter integration. No browser task execution or ranking guarantees.",
+    "description": "Clerk API-key-authenticated, passive website agent-readiness audits powered by the AgentReady alpha engine. No browser task execution or ranking guarantees.",
     "contact": {
       "url": "https://www.adaptmypage.com/agent-readiness-api/"
     }
@@ -63,17 +63,23 @@
           "200": {
             "description": "Full AgentReady report with original statuses and scoring.",
             "headers": {
-              "X-RateLimit-Limit": {
+              "RateLimit-Limit": {
                 "schema": {
                   "type": "integer"
                 },
-                "description": "Account's monthly scan allowance."
+                "description": "Account's scan allowance for the current window."
               },
-              "X-RateLimit-Remaining": {
+              "RateLimit-Remaining": {
                 "schema": {
                   "type": "integer"
                 },
-                "description": "Scan allowance remaining after reservation."
+                "description": "Scan allowance remaining after this request."
+              },
+              "RateLimit-Reset": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "Unix timestamp in seconds when the current window resets."
               }
             },
             "content": {
@@ -158,6 +164,24 @@
                   "type": "integer"
                 },
                 "description": "Minimum recommended seconds before retry; quota resets may take longer."
+              },
+              "RateLimit-Limit": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "Account's scan allowance for the current window."
+              },
+              "RateLimit-Remaining": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "Always 0 when the rate limit has been reached."
+              },
+              "RateLimit-Reset": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "Unix timestamp in seconds when the current window resets."
               }
             },
             "content": {
@@ -169,7 +193,7 @@
             }
           },
           "503": {
-            "description": "Service paused or dependency unavailable",
+            "description": "Service paused or an authentication/scanning dependency is unavailable",
             "headers": {},
             "content": {
               "application/json": {
@@ -199,7 +223,7 @@
       "BearerAuth": {
         "type": "http",
         "scheme": "bearer",
-        "bearerFormat": "API bearer token"
+        "bearerFormat": "Clerk customer API key"
       }
     },
     "schemas": {

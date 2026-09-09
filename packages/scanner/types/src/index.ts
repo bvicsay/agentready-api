@@ -118,6 +118,9 @@ export interface ScanOptions {
   active?: boolean | undefined;
   browser?: boolean | undefined;
   failOn?: Severity | "none" | undefined;
+  signal?: AbortSignal | undefined;
+  publicOnly?: boolean | undefined;
+  requireSuccessfulTarget?: boolean | undefined;
 }
 
 export interface RuleDefinition {
@@ -158,6 +161,9 @@ export interface RequiredScannerOptions {
   failOn: Severity | "none";
   include: string[];
   exclude: string[];
+  signal?: AbortSignal | undefined;
+  publicOnly: boolean;
+  requireSuccessfulTarget: boolean;
 }
 
 export interface FetchRecord {

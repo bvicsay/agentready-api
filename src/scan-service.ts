@@ -1,21 +1,15 @@
 import { ApiError } from './api-platform.js'
-import { builtInRules, runScan, scanContext, validateUrl } from './agentready-engine.cjs'
+import { runScan } from '../packages/scanner/core/src/scanner.js'
+import { TargetUnavailableError } from '../packages/scanner/core/src/scanner-errors.js'
+import { validatePublicUrl } from '../packages/scanner/core/src/public-network.js'
+import { builtInRules } from '../packages/scanner/rules/src/builtins.js'
+import { profiles as scannerProfiles, type ProfileOption } from '../packages/scanner/types/src/index.js'
 
-export const profiles = [
-  'auto',
-  'website',
-  'merchant',
-  'api',
-  'marketplace',
-  'mcp-server',
-  'agent-service',
-] as const
-
-type Profile = (typeof profiles)[number]
+export const profiles = ['auto', ...scannerProfiles] as const
 
 export type ScanInput = {
   target: URL
-  profile: Profile
+  profile: ProfileOption
 }
 
 type ScanRequest = {
@@ -31,7 +25,7 @@ export function scanInput(body: ScanRequest): ScanInput {
   let target: URL
   try {
     const value = /^[a-z][a-z\d+.-]*:/i.test(body.url.trim()) ? body.url.trim() : `https://${body.url.trim()}`
-    target = validateUrl(value)
+    target = validatePublicUrl(value)
   } catch {
     throw new ApiError(400, 'invalid_url', 'Only public HTTP(S) URLs on standard ports are supported.')
   }
@@ -48,20 +42,19 @@ export function scanInput(body: ScanRequest): ScanInput {
   }
 
   const profile = body.profile ?? 'auto'
-  if (typeof profile !== 'string' || !profiles.includes(profile as Profile)) {
+  if (typeof profile !== 'string' || !profiles.includes(profile as ProfileOption)) {
     throw new ApiError(400, 'invalid_profile')
   }
 
-  return { target, profile: profile as Profile }
+  return { target, profile: profile as ProfileOption }
 }
 
 export async function scan(input: ScanInput): Promise<unknown> {
   const controller = new AbortController()
-  const context = { signal: controller.signal, requests: 0, rootError: null as string | null }
   let timer: ReturnType<typeof setTimeout> | undefined
 
   try {
-    const pending = scanContext.run(context, () => runScan({
+    const pending = runScan({
       target: input.target.href,
       profile: input.profile,
       maxPages: 12,
@@ -71,20 +64,22 @@ export async function scan(input: ScanInput): Promise<unknown> {
       respectRobots: true,
       active: false,
       browser: false,
-    }, builtInRules))
+      signal: controller.signal,
+      publicOnly: true,
+      requireSuccessfulTarget: true,
+    }, builtInRules)
     const deadline = new Promise<never>((_, reject) => {
       timer = setTimeout(() => {
         controller.abort()
         reject(new ApiError(504, 'scan_timeout', 'Scan exceeded 45 seconds. Try again later.'))
       }, 45_000)
     })
-    const result = await Promise.race([pending, deadline])
-
-    if (context.rootError) {
+    return await Promise.race([pending, deadline])
+  } catch (error) {
+    if (error instanceof TargetUnavailableError) {
       throw new ApiError(422, 'target_unavailable', 'The public website could not be fetched. It may be blocked, unavailable, or exceed scan limits.')
     }
-
-    return result
+    throw error
   } finally {
     if (timer) clearTimeout(timer)
     controller.abort()

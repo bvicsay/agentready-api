@@ -12,3 +12,5 @@ packages/*/src/**/*.d.ts.map
 .env.*
 !.env.example
 *.log
+
+data/

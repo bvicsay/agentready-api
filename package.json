@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": false,
   "workspaces": [
-    "packages/*"
+    "packages/scanner/*"
   ],
   "type": "module",
   "description": "A public HTTP API for passive Agent Readiness website scans.",
@@ -12,18 +12,16 @@
     "node": ">=22.18.0"
   },
   "scripts": {
-    "build": "node src/build-engine.mjs",
-    "agentready:build": "npm run build --workspaces --if-present",
-    "agentready:typecheck": "tsc -b packages/types packages/core packages/rules packages/report packages/cli --pretty false",
-    "agentready:cli": "tsx packages/cli/src/index.ts",
-    "prospect-keywords": "tsx scripts/prospect-keyword-plan.ts",
-    "prospects": "tsx scripts/prospect-audit.ts",
+    "build": "tsc -b packages/scanner/types packages/scanner/core packages/scanner/rules packages/scanner/report --pretty false && npm run build --workspace @swarmclawai/agentready",
+    "scanner:typecheck": "tsc -b packages/scanner/types packages/scanner/core packages/scanner/rules packages/scanner/report packages/scanner/cli --pretty false",
+    "scanner:cli": "tsx packages/scanner/cli/src/index.ts",
     "start": "tsx src/server.ts",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit && npm run scanner:typecheck",
     "test": "vitest run",
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@clerk/backend": "^3.17.1",
     "@hono/node-server": "1.19.17",
     "cheerio": "1.1.2",
     "fast-xml-parser": "5.11.1",
@@ -35,7 +33,6 @@
   },
   "devDependencies": {
     "@types/node": "^26.5.0",
-    "esbuild": "0.25.12",
     "typescript": "5.9.3",
     "vitest": "4.0.15"
   }

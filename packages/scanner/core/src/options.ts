@@ -16,7 +16,10 @@ export function normalizeOptions(options: ScanOptions): RequiredScannerOptions {
     browser: options.browser ?? false,
     failOn: options.failOn ?? "none",
     include: options.include ?? [],
-    exclude: options.exclude ?? []
+    exclude: options.exclude ?? [],
+    ...(options.signal ? { signal: options.signal } : {}),
+    publicOnly: options.publicOnly ?? false,
+    requireSuccessfulTarget: options.requireSuccessfulTarget ?? false
   };
 }
 

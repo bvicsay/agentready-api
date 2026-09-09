@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/%40swarmclawai%2Fagentready?label=npm)](https://www.npmjs.com/package/@swarmclawai/agentready)
 [![npm alpha](https://img.shields.io/npm/v/%40swarmclawai%2Fagentready/alpha?label=alpha)](https://www.npmjs.com/package/@swarmclawai/agentready/v/0.1.0-alpha.0)
 [![license](https://img.shields.io/npm/l/%40swarmclawai%2Fagentready)](LICENSE)
-[![node](https://img.shields.io/badge/node-%3E%3D20.18-339933)](packages/cli/package.json)
+[![node](https://img.shields.io/badge/node-%3E%3D20.18-339933)](packages/scanner/cli/package.json)
 
 Open-source readiness scanner for the agentic web.
 
@@ -123,7 +123,7 @@ pnpm test
 pnpm build
 ```
 
-The CLI package lives in `packages/cli`; scanner logic is split across `packages/core`, `packages/rules`, `packages/report`, and `packages/types`.
+The CLI package lives in `packages/scanner/cli`; scanner logic is split across `packages/scanner/core`, `packages/scanner/rules`, `packages/scanner/report`, and `packages/scanner/types`.
 
 ## License
 

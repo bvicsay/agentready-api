@@ -1,6 +1,6 @@
 # Rules
 
-Rules are small, public, and testable. Built-in rules are implemented in `packages/rules`.
+Rules are small, public, and testable. Built-in rules are implemented in `packages/scanner/rules`.
 
 Custom YAML rule example:
 
