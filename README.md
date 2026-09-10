@@ -44,11 +44,13 @@ submodule on the VPS.
 ## Local run
 
 ```sh
-cp .env.example .env
 npm ci
 npm start
 curl http://localhost:3000/healthz
 ```
+
+Run `clerk env pull` once to create the ignored `.env.local` file with the
+development Clerk keys. `npm start` loads that file automatically.
 
 Create a Clerk application, enable **User API keys** in the Clerk Dashboard,
 then set the backend secret key:
@@ -57,8 +59,8 @@ then set the backend secret key:
 CLERK_SECRET_KEY=sk_test_replace-with-your-clerk-secret-key
 ```
 
-Keep this secret server-side and keep `.env` out of Git. Customer keys are
-created and revoked in Clerk and are verified on every API request. See
+Keep this secret server-side and keep `.env.local` out of Git. Customer keys
+are created and revoked in Clerk and are verified on every API request. See
 [`docs/account-management.md`](docs/account-management.md) for the dashboard
 and external-website setup.
 
