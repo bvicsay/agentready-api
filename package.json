@@ -15,7 +15,8 @@
     "build": "tsc -b packages/scanner/types packages/scanner/core packages/scanner/rules packages/scanner/report --pretty false && npm run build --workspace @swarmclawai/agentready",
     "scanner:typecheck": "tsc -b packages/scanner/types packages/scanner/core packages/scanner/rules packages/scanner/report packages/scanner/cli --pretty false",
     "scanner:cli": "tsx packages/scanner/cli/src/index.ts",
-    "start": "tsx --env-file=.env.local src/server.ts",
+    "start": "tsx src/server.ts",
+    "start:local": "tsx --env-file=.env.local src/server.ts",
     "typecheck": "tsc --noEmit && npm run scanner:typecheck",
     "test": "vitest run",
     "test:watch": "vitest"

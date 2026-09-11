@@ -50,7 +50,9 @@ curl http://localhost:3000/healthz
 ```
 
 Run `clerk env pull` once to create the ignored `.env.local` file with the
-development Clerk keys. `npm start` loads that file automatically.
+development Clerk keys, then use `npm run start:local`. In Docker and
+production, use `npm start`; Docker supplies configuration through environment
+variables and does not require a local env file.
 
 Create a Clerk application, enable **User API keys** in the Clerk Dashboard,
 then set the backend secret key:
